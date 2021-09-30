@@ -21,7 +21,7 @@ function Cabecalho() {
   const [mostrarPopUp, setMostrarPopUp] = useState(false);
   const [mostrarPerfil, setMostrarPerfil] = useState(false);
   const [dadosUsuario, setDadosUsuario] = useState([]);
-  const { tokenStorage, removeTokenStorage } = useContext(ContextoDeAutorizacao);
+  const { removeTokenStorage } = useContext(ContextoDeAutorizacao);
   const classes = useStyles();
   const history = useHistory();
 

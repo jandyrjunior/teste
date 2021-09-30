@@ -80,7 +80,8 @@ function FormularioCliente() {
     });
 
     e.preventDefault();
-    //history.push('/home');
+    history.push('/home');
+    console.log(resposta);
 
   }
 

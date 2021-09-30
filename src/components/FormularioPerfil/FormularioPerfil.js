@@ -78,6 +78,7 @@ function FormularioPerfil({ setMostrarPerfil, dadosUsuario }) {
     setCarregando(false);
 
     console.log(dadosForm);
+    console.log(resposta);
 
     e.preventDefault();
 
@@ -93,7 +94,7 @@ function FormularioPerfil({ setMostrarPerfil, dadosUsuario }) {
   };
 
   return (
-    <form className='container-formulario' onSubmit={(e) => onSubmit(e)}> {/*criar a funcao de submitar os dados*/}
+    <form className='container-formulario' onSubmit={(e) => onSubmit(e)}> 
       <p className='btn-fechar' onClick={() => setMostrarPerfil(false)}>X</p>
       <h4>// EDITAR USUÁRIO</h4>
       <label htmlFor='nome'>Nome</label>
