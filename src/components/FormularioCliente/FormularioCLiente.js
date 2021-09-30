@@ -25,7 +25,6 @@ function FormularioCliente() {
   const [cidadeCliente, setCidadeCliente] = useState('');
   const [complementoCliente, setComplementoCliente] = useState('');
   const [ptRefCliente, setPtRefCliente] = useState('');
-  const history = useHistory();
   const classes = useStyles();
   const [carregando, setCarregando] = useState(false);
   const [erro, setErro] = useState("");
@@ -78,7 +77,7 @@ function FormularioCliente() {
         "Content-type": "application/json"
       }
     });
-
+	console.log(resposta)
     e.preventDefault();
     //history.push('/home');
 
