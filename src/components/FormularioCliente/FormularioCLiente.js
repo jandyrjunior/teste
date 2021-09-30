@@ -4,7 +4,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { Backdrop, CircularProgress, Snackbar } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Alert } from '@material-ui/lab';
-const { obterDadosViaCEP } = require('../../services/viaCEP.js');
+import { obterDadosViaCEP }  from '../../services/viaCEP.js';
 
 const useStyles = makeStyles((theme) => ({
   backdrop: {
@@ -80,8 +80,7 @@ function FormularioCliente() {
     });
 
     e.preventDefault();
-    history.push('/home');
-    console.log(resposta);
+    //history.push('/home');
 
   }
 
