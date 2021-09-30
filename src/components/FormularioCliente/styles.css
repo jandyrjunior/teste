@@ -1,0 +1,111 @@
+.form-clientes {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 958px;
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 0px 0px 5px 5px #00000020;
+    margin-left: 72px;
+}
+
+.form-clientes input {    
+    font-size: 14px;
+    font-weight: 400;    
+    color: #a5a5a5;
+}
+
+.form-clientes input::placeholder {
+    color: #a5a5a566;
+}
+
+.form-clientes-pt-1 {
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+}
+
+.form-clientes label {
+    font-size: 16px;
+    font-weight: 600;
+    color: #374952;
+    padding: 0px;
+    padding-left: 8px
+}
+
+.form-clientes-pt-1 input {
+    width: 521px;
+    height: 16px;
+    border: 1px solid #374952;
+    border-radius: 8px;
+    margin-top: 4px;
+    margin-bottom: 15px;
+    padding: 8px;
+    outline: none;
+}
+
+.form-clientes-pt-2 {
+    display: flex;
+    width: 538px;
+}
+
+.form-clientes-pt-2-1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin-right: 11px;
+}
+
+.form-clientes-pt-2 input {
+    width: 240px;
+    height: 16px;
+    border: 1px solid #374952;
+    border-radius: 8px;
+    margin-top: 4px;
+    margin-bottom: 15px;
+    padding: 8px;
+    outline: none;
+}
+
+.form-clientes-pt-2-2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: left;
+    margin-left: 11px;
+}
+
+.form-clientes-pt-3 {
+    display: flex;
+    width: 530px;
+    justify-content: flex-end;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+.form-clientes-pt-3 .btn-cancelar {
+    font-size: 14px;
+    font-weight: 600;
+    color: #da0175;
+    padding: 11px 60px;
+    background-color: white;
+    border-radius: 20px;
+    border: 1px solid #da0175;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.form-clientes-pt-3 .btn-submit {
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+    padding: 11px 60px;
+    background-color: #da0175;
+    border-radius: 20px;
+    cursor: pointer;
+    border: none;
+    margin-left: 15px;
+}

@@ -1,0 +1,87 @@
+.container-formulario {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 0px 0px 5px 5px #00000020;
+}
+
+.container-formulario p {
+    font-size: 16px;
+    font-weight: 400;
+    margin: 0;
+    margin-top: 15px;
+    margin-right: 20px;
+    margin-left: auto;
+    margin-bottom: 15px;
+}
+
+.container-formulario h4 {
+    font-size: 24px;
+    font-weight: 400;
+    text-align: center;
+    margin-top: 0;
+    margin-right: auto;
+    margin-left: 72px;
+    margin-bottom: 44px;
+}
+
+.container-formulario label {
+    font-size: 16px;
+    font-weight: 600;
+    margin-left: 87px;
+    color: #374952;
+}
+
+.container-formulario input {  
+    width: 261px;
+    border: none;
+    border-bottom: 1px solid #4c4c4c;
+    outline: none;
+    margin-left: 72px;
+    margin-right: 72px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    font-weight: 400;    
+    color: #a5a5a5;
+    padding: 14px 14px;
+}
+
+.container-formulario input::placeholder {
+    color: #a5a5a566;
+} 
+
+.container-input-nova-senha {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.icone-vista {
+    position: absolute;
+    top: 32px;
+    right: 80px;
+    z-index: 1;
+    width: 22px;
+    cursor: pointer;
+}
+
+.btn-fechar {
+    cursor: pointer;
+}
+
+.container-formulario .btn-submit {
+    border: none;
+    background-color: #da0175;
+    color: white;
+    padding: 11px 60px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    margin: 40px 112px 52px 112px;
+    font-size: 16px;
+    font-weight: 600;
+}

@@ -1,0 +1,106 @@
+.container-login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f7f7f7;
+}
+
+.container-login p {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.container-login .link {
+    font-size: 14px;
+    font-weight: 400px;
+    color: #da0175;
+}
+
+.card-login {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 16px;
+    box-shadow: 0px 0px 5px 5px #00000020;
+}
+
+.card-login img {
+    margin: 49px 135px 56px 135px;
+}
+
+.card-login .icone-vista {
+    position: absolute;
+    top: -12px;
+    right: -50px;
+    z-index: 1;
+    width: 22px;
+    cursor: pointer;
+}
+
+.card-login button {
+    background-color: #da0175;
+    border-radius: 20px;
+    padding: 11px 60px;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    margin: 32px 119px 72px 119px;
+}
+
+.card-login .btn-disabled {
+    background-color: #da017536;
+    border-radius: 20px;
+    padding: 11px 60px;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    margin: 32px 119px 72px 119px;
+}
+
+.card-login label {    
+    font-size: 16px;
+    font-weight: 600;
+    color: #374952;
+    margin-left: 72px;
+    margin-right: auto;
+    margin-bottom: 7px;
+    padding-left: 14px;
+}
+
+.card-login input {    
+    width: 261px;
+    border: none;
+    border-bottom: 1px solid #4c4c4c;
+    outline: none;
+    margin-left: 72px;
+    margin-right: 72px;
+    margin-bottom: 40px;
+    font-size: 14px;
+    font-weight: 400;    
+    color: #a5a5a5;
+    padding: 14px 14px;
+}
+
+.card-login input::placeholder {
+    color: #a5a5a566;
+} 
+
+.card-login input::placeholder {
+    font-size: 14px;
+    font-weight: 400;
+    color: #a5a5a5;
+}
+
+.container-input-senha {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}

@@ -1,0 +1,26 @@
+.container {
+    display: flex;
+}
+
+.container .container-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 100vh;
+}
+
+.container-dashboard {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    flex-grow: 1;
+    width: 100%;
+}
+
+.cabecalho {
+    margin-top: 32px;
+    margin-right: 54px;
+    margin-left: auto;
+}

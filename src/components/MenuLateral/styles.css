@@ -1,0 +1,51 @@
+.container-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: #263238;
+    min-height: 100vh;
+    width: 264px;
+}
+
+.logo-cubos {
+    margin-top: 32px;
+    margin-left: 48px;
+    margin-bottom: 58px;
+}
+
+.btn-menu {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #263238;
+    height: 47px;
+    width: 100%;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
+    color: white;
+}
+
+.btn-menu:hover {    
+    background-color: #374952;
+}
+
+.btn-menu .icone {
+    margin-left: 52px;
+    margin-right: 15px;
+}
+
+.btn-criar-cobranca {
+    padding: 11px 60px;
+    border-radius: 20px;
+    background-color: #da0175;
+    color: white;
+    margin-left: 19px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 300px;
+    cursor: pointer;
+    text-decoration: none;
+}
