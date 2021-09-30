@@ -1,10 +1,10 @@
 import './styles.css';
 import { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { obterDadosViaCEP } from '../../services/viaCEP.js';
 import { Backdrop, CircularProgress, Snackbar } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Alert } from '@material-ui/lab';
+const { obterDadosViaCEP } = require('../../services/viaCEP.js');
 
 const useStyles = makeStyles((theme) => ({
   backdrop: {
