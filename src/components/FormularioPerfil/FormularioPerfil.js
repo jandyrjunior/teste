@@ -96,7 +96,7 @@ function FormularioPerfil({ setMostrarPerfil, dadosUsuario }) {
   return (
     <form className='container-formulario' onSubmit={(e) => onSubmit(e)}> 
       <p className='btn-fechar' onClick={() => setMostrarPerfil(false)}>X</p>
-      <h4>// EDITAR USUÁRIO</h4>
+      <h4>EDITAR USUÁRIO</h4>
       <label htmlFor='nome'>Nome</label>
       <input id='nome' type='text' value={nome} onChange={(e) => setNome(e.target.value)} />
       <label htmlFor='email'>E-mail</label>
