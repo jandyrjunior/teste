@@ -34,7 +34,6 @@ function FormularioCliente() {
   const {tokenStorage} = useContext(ContextoDeAutorizacao);
 
   async function onSubmit(e) {
-    e.preventDefault();
 
     if (!(nomeCliente || emailCliente || cpfCliente || telefoneCliente)) {
       setErro('Os campos de nome, telefone, e-mail e CPF são obrigatórios');

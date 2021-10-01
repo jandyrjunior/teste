@@ -37,17 +37,14 @@ function FormularioPerfil({ setMostrarPerfil, dadosUsuario }) {
   async function onSubmit(e) {
 
     if (!(email || nome)) {
-      e.preventDefault();
       setErro('Favor preencher os campos de nome e e-mail.');
       return;
     }
     if (!nome) {
-      e.preventDefault();
       setErro('Favor preencher o campo do nome.');
       return;
     }
     if (!email) {
-      e.preventDefault();
       setErro('Favor preencher o campo de e-mail.');
       return;
     }
