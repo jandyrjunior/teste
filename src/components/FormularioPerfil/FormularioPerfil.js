@@ -6,6 +6,7 @@ import { Backdrop, CircularProgress, Snackbar } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Alert } from '@material-ui/lab';
 import ContextoDeAutorizacao from '../../contextos/ContextoDeAutorizacao';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   backdrop: {
@@ -26,6 +27,7 @@ function FormularioPerfil({ setMostrarPerfil, dadosUsuario }) {
   const [carregando, setCarregando] = useState(false);
   const [sucesso, setSucesso] = useState('');
   const {tokenStorage} = useContext(ContextoDeAutorizacao);
+  const history = useHistory();
 
   useEffect(() => {
     setNome(dadosUsuario.nome);
@@ -87,7 +89,7 @@ function FormularioPerfil({ setMostrarPerfil, dadosUsuario }) {
 
     if (resposta.ok) {
       setSucesso('Perfil atualizado com sucesso.');
-      return;
+      history.push('/home');
     }
 
   }
