@@ -66,7 +66,7 @@ function FormularioCliente() {
       bairro: bairroCliente,
       cidade: cidadeCliente,
       complemento: complementoCliente,
-      pontoDeReferencia: ptRefCliente
+      referencia: ptRefCliente
     };
 
     console.log(tokenStorage);
@@ -75,7 +75,7 @@ function FormularioCliente() {
     setErro('');
     setCarregando(true);
 
-    const resposta = await fetch('https://api-cubos-cobranca.herokuapp.com/cliente', {
+    const resposta = await fetch(`${process.env.REACT_APP_API_URL}/cliente`, {
       method: "POST",
       body: JSON.stringify(dadosFormCliente),
       headers: {
