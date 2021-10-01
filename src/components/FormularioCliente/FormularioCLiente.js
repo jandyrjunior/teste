@@ -121,7 +121,7 @@ function FormularioCliente() {
     setBairroCliente('');
     setLogradouroCliente('');
 
-    if (cep.length === 8) {
+    if (cep.length === 9) {
       const dadosCarregados = await obterDadosViaCEP(cep);
       setCidadeCliente(dadosCarregados.localidade);
       setBairroCliente(dadosCarregados.bairro);
@@ -144,9 +144,9 @@ function FormularioCliente() {
       <div className='form-clientes-pt-2'>
         <div className='form-clientes-pt-2-1' >
           <label htmlFor='cpfCliente'>CPF</label>
-          <input id='cpfCliente' type='text' maxLength='14' placeholder='222.222.222-22' /*pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"*/ value={cpfCliente} onChange={(e) => setCpfCliente(e.target.value)} />
+          <input id='cpfCliente' type='text' maxLength='14' placeholder='xxx.xxx.xxx-xx' pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" value={cpfCliente} onChange={(e) => setCpfCliente(e.target.value)} />
           <label htmlFor='cepCliente'>CEP</label>
-          <input id='cepCliente' maxLength='9' type='text' placeholder='22222-222' /*pattern="\d{5}\d{-}\d{3}"*/ value={cepCliente} onChange={(e) => setCepCliente(e.target.value)} />
+          <input id='cepCliente' maxLength='9' type='text' placeholder='xxxxx-xxx' pattern="\d{5}\d{-}\d{3}" value={cepCliente} onChange={(e) => setCepCliente(e.target.value)} />
           <label htmlFor='bairroCliente'>Bairro</label>
           <input id='bairroCliente' type='text' value={bairroCliente} onChange={(e) => setBairroCliente(e.target.value)} />
           <label htmlFor='complementoCliente'>Complemento</label>
@@ -154,7 +154,7 @@ function FormularioCliente() {
         </div>
         <div className='form-clientes-pt-2-2' >
           <label htmlFor='telefoneCliente'>Telefone</label>
-          <input id='telefoneCliente' type='text' maxLength='15' placeholder='(99) 98765-4321' /*pattern="\(\d{2}\) \d{5}-\d{4}"*/ value={telefoneCliente} onChange={(e) => setTelefoneCliente(e.target.value)} />
+          <input id='telefoneCliente' type='text' maxLength='15' placeholder='(xx) xxxxx-xxxx' pattern="\(\d{2}\) \d{5}-\d{4}" value={telefoneCliente} onChange={(e) => setTelefoneCliente(e.target.value)} />
           <label htmlFor='logradouroCliente'>Logradouro</label>
           <input id='logradouroCliente' type='text' value={logradouroCliente} onChange={(e) => setLogradouroCliente(e.target.value)} />
           <label htmlFor='cidadeCliente'>Cidade</label>

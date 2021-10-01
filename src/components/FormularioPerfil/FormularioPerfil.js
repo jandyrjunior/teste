@@ -122,9 +122,9 @@ function FormularioPerfil({ setMostrarPerfil, dadosUsuario }) {
         <img className='icone-vista' src={verSenha ? view : noView} alt='icone-olho' onClick={() => setVerSenha(!verSenha)} />
       </div>
       <label htmlFor='cpf'>CPF</label>
-      <input id='cpf' type='text' placeholder='222.222.222-22' /*pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"*/ value={cpf} onChange={(e) => setCpf(e.target.value)} />
+      <input id='cpf' type='text' placeholder='xxx.xxx.xxx-xx' pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" value={cpf} onChange={(e) => setCpf(e.target.value)} />
       <label htmlFor='telefone'>Telefone</label>
-      <input id='telefone' type='text' placeholder='(99) 98765-4321' /*pattern="\(\d{2}\) \d{5}-\d{4}"*/ value={telefone} onChange={(e) => setTelefone(e.target.value)} />
+      <input id='telefone' type='text' placeholder='(xx) xxxxx-xxxx' pattern="\(\d{2}\) \d{5}-\d{4}" value={telefone} onChange={(e) => setTelefone(e.target.value)} />
       <button className='btn-submit' type='submit'>Editar conta</button>
       <Backdrop className={classes.backdrop} open={carregando} >
         <CircularProgress color="inherit" />
