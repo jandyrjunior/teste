@@ -93,7 +93,6 @@ function FormularioPerfil({ setMostrarPerfil, dadosUsuario }) {
       return;
     }
 
-    e.preventDefault();
   }
 
   const fecharErro = (event, reason) => {
