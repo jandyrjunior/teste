@@ -27,7 +27,7 @@ function LogIn() {
   const [carregando, setCarregando] = useState(false);
   const [verSenha, setVerSenha] = useState(false);
   const history = useHistory();
-  const { token, setToken, setTokenStorage } = useContext(ContextoDeAutorizacao);
+  const { setTokenStorage } = useContext(ContextoDeAutorizacao);
 
   async function onSubmit(data) { 
     
@@ -72,7 +72,6 @@ function LogIn() {
   
     if (resposta.ok) {
       setTokenStorage(dados.token);
-      setToken(dados.token);
       history.push('/home');
       return;
     }

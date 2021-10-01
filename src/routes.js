@@ -10,7 +10,7 @@ import Home from './pages/Home'
 import Construcao from './pages/Construcao';
 import Clientes from './pages/Clientes';
 import ContextoDeAutorizacao from './contextos/ContextoDeAutorizacao';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useLocalStorage } from 'react-use';
 
 function Routes() {
@@ -26,13 +26,6 @@ function Routes() {
           <Route path='/construcao' component={Construcao} />
           <Route path='/clientes' component={Clientes} />
           <Route path='/' component={LogIn} />
-          {
-            token && (
-              <>
-
-              </>
-            )
-          }
         </Switch>
       </Router>
     </ContextoDeAutorizacao.Provider>
