@@ -21,11 +21,11 @@ function Routes() {
     <ContextoDeAutorizacao.Provider value={{ token, setToken, tokenStorage, setTokenStorage, removeTokenStorage }}>
       <Router>
         <Switch>
+          <Route path='/' exact component={LogIn} />
           <Route path='/cadastro' component={Cadastro} />
           <Route path='/home' component={Home} />
           <Route path='/construcao' component={Construcao} />
           <Route path='/clientes' component={Clientes} />
-          <Route path='/' component={LogIn} />
         </Switch>
       </Router>
     </ContextoDeAutorizacao.Provider>
