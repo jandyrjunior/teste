@@ -66,7 +66,7 @@ function FormularioPerfil({ setMostrarPerfil, dadosUsuario }) {
       dadosForm.cpf = cpf
     }
 
-    console.log(tokenStorage)
+    console.log(dadosForm)
 
     setErro('');
     setCarregando(true);
