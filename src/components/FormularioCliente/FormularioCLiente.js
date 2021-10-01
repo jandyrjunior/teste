@@ -28,6 +28,7 @@ function FormularioCliente() {
   const classes = useStyles();
   const [carregando, setCarregando] = useState(false);
   const [erro, setErro] = useState("");
+  const history = useHistory();
 
   async function onSubmit(e) {
     e.preventDefault();
@@ -70,16 +71,16 @@ function FormularioCliente() {
     setCarregando(true);
     console.log(dadosFormCliente)
 
-    const resposta = await fetch('http://localhost:3003/cadastro', {
+    const resposta = await fetch('https://api-cubos-cobranca.herokuapp.com/cliente', {
       method: "POST",
       body: JSON.stringify(dadosFormCliente),
       headers: {
         "Content-type": "application/json"
       }
     });
-	console.log(resposta)
-    e.preventDefault();
-    //history.push('/home');
+
+    console.log(resposta);
+    history.push('/home');
 
   }
 

@@ -56,7 +56,7 @@ function Cadastro() {
     setErro("");
     setCarregando(true);
 
-    const resposta = await fetch('http://localhost:3000/cadastrar', {
+    const resposta = await fetch('https://api-cubos-cobranca.herokuapp.com/usuario', {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
