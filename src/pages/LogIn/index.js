@@ -53,7 +53,7 @@ function LogIn() {
     setErro("");
     setCarregando(true);
   
-    const resposta = await fetch('http://localhost:3003/', {
+    const resposta = await fetch('https://api-cubos-cobranca.herokuapp.com/', {
       method: "POST",
       body: JSON.stringify(data),
       headers: {

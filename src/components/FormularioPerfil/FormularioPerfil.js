@@ -72,7 +72,7 @@ function FormularioPerfil({ setMostrarPerfil, dadosUsuario }) {
     setErro('');
     setCarregando(true);
     
-    const resposta = await fetch('http://localhost:3003/usuario', {
+    const resposta = await fetch('https://api-cubos-cobranca.herokuapp.com/usuario', {
       method: "PUT",
       body: JSON.stringify(dadosForm),
       headers: {

@@ -76,7 +76,7 @@ function FormularioCliente() {
     setErro('');
     setCarregando(true);
 
-    const resposta = await fetch('http://localhost:3003/cliente', {
+    const resposta = await fetch('https://api-cubos-cobranca.herokuapp.com/cliente', {
       method: "POST",
       body: JSON.stringify(dadosFormCliente),
       headers: {
