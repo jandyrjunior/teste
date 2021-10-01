@@ -75,7 +75,7 @@ function FormularioCliente() {
     setErro('');
     setCarregando(true);
 
-    const resposta = await fetch(`${process.env.REACT_APP_API_URL}/cliente`, {
+    const resposta = await fetch(`https://api-cubos-cobranca.herokuapp.com/cliente`, {
       method: "POST",
       body: JSON.stringify(dadosFormCliente),
       headers: {

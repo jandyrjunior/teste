@@ -28,7 +28,7 @@ function Cabecalho() {
   async function carregarDados() {
     setMostrarPerfil(true);
     
-    const resposta = await fetch(`${process.env.REACT_APP_API_URL}/usuario`, {
+    const resposta = await fetch(`https://api-cubos-cobranca.herokuapp.com/usuario`, {
       method: 'GET',
       headers: {
         "Authorization": `Bearer ${tokenStorage}`
