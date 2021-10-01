@@ -5,6 +5,7 @@ import CardCliente from "../../components/CardCliente/CardCliente";
 import CardCobranca from "../../components/CardCobranca/CardCobranca";
 
 function Home() {
+
   return (
     <div className='container'>
       <div className='container-menu-lateral'>

@@ -27,7 +27,7 @@ function LogIn() {
   const [carregando, setCarregando] = useState(false);
   const [verSenha, setVerSenha] = useState(false);
   const history = useHistory();
-  const { setToken, setTokenStorage } = useContext(ContextoDeAutorizacao);
+  const { token, setToken, setTokenStorage } = useContext(ContextoDeAutorizacao);
 
   async function onSubmit(data) { 
     
@@ -53,7 +53,7 @@ function LogIn() {
     setErro("");
     setCarregando(true);
   
-    const resposta = await fetch('https://api-cubos-cobranca.herokuapp.com/', {
+    const resposta = await fetch('http://localhost:3003/', {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
@@ -71,8 +71,8 @@ function LogIn() {
     }
   
     if (resposta.ok) {
-      setToken(dados.token);
       setTokenStorage(dados.token);
+      setToken(dados.token);
       history.push('/home');
       return;
     }

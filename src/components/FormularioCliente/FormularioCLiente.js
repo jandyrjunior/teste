@@ -1,10 +1,11 @@
 import './styles.css';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { Backdrop, CircularProgress, Snackbar } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Alert } from '@material-ui/lab';
 import { obterDadosViaCEP }  from '../../services/viaCEP.js';
+import ContextoDeAutorizacao from '../../contextos/ContextoDeAutorizacao';
 
 const useStyles = makeStyles((theme) => ({
   backdrop: {
@@ -25,10 +26,12 @@ function FormularioCliente() {
   const [cidadeCliente, setCidadeCliente] = useState('');
   const [complementoCliente, setComplementoCliente] = useState('');
   const [ptRefCliente, setPtRefCliente] = useState('');
+  const history = useHistory();
   const classes = useStyles();
   const [carregando, setCarregando] = useState(false);
   const [erro, setErro] = useState("");
-  const history = useHistory();
+  const [sucessoCliente, setSucessoCliente] = useState('');
+  const {tokenStorage} = useContext(ContextoDeAutorizacao);
 
   async function onSubmit(e) {
     e.preventDefault();
@@ -67,20 +70,33 @@ function FormularioCliente() {
       pontoDeReferencia: ptRefCliente
     };
 
+    console.log(tokenStorage);
+    console.log(dadosFormCliente);
+
     setErro('');
     setCarregando(true);
-    console.log(dadosFormCliente)
 
-    const resposta = await fetch('https://api-cubos-cobranca.herokuapp.com/cliente', {
+    const resposta = await fetch('http://localhost:3003/cliente', {
       method: "POST",
       body: JSON.stringify(dadosFormCliente),
       headers: {
-        "Content-type": "application/json"
+        "Content-type": "application/json",
+        "Authorization": `Bearer ${tokenStorage}`
       }
     });
 
-    console.log(resposta);
-    history.push('/home');
+    setCarregando(false);
+    console.log(resposta)
+    if (!resposta.ok) {
+      setErro('Deu merda');
+      return;
+    }
+
+    if (resposta.ok) {
+      setSucessoCliente('Cliente cadastrado com sucesso.');
+      history.push('/home');
+      return
+    }
 
   }
 
@@ -91,6 +107,14 @@ function FormularioCliente() {
 
     setErro('');
   };
+  
+  const fecharSucesso = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setSucessoCliente(false);
+  };
 
   async function carregarDadosPeloCEP(cep) {
 
@@ -98,7 +122,7 @@ function FormularioCliente() {
     setBairroCliente('');
     setLogradouroCliente('');
 
-    if (cep.length === 9) {
+    if (cep.length === 8) {
       const dadosCarregados = await obterDadosViaCEP(cep);
       setCidadeCliente(dadosCarregados.localidade);
       setBairroCliente(dadosCarregados.bairro);
@@ -121,9 +145,9 @@ function FormularioCliente() {
       <div className='form-clientes-pt-2'>
         <div className='form-clientes-pt-2-1' >
           <label htmlFor='cpfCliente'>CPF</label>
-          <input id='cpfCliente' type='text' maxLength='14' placeholder='222.222.222-22' pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" value={cpfCliente} onChange={(e) => setCpfCliente(e.target.value)} />
+          <input id='cpfCliente' type='text' maxLength='14' placeholder='222.222.222-22' /*pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"*/ value={cpfCliente} onChange={(e) => setCpfCliente(e.target.value)} />
           <label htmlFor='cepCliente'>CEP</label>
-          <input id='cepCliente' maxLength='9' type='text' placeholder='22222-222' pattern="\d{5}\d{-}\d{3}" value={cepCliente} onChange={(e) => setCepCliente(e.target.value)} />
+          <input id='cepCliente' maxLength='9' type='text' placeholder='22222-222' /*pattern="\d{5}\d{-}\d{3}"*/ value={cepCliente} onChange={(e) => setCepCliente(e.target.value)} />
           <label htmlFor='bairroCliente'>Bairro</label>
           <input id='bairroCliente' type='text' value={bairroCliente} onChange={(e) => setBairroCliente(e.target.value)} />
           <label htmlFor='complementoCliente'>Complemento</label>
@@ -131,7 +155,7 @@ function FormularioCliente() {
         </div>
         <div className='form-clientes-pt-2-2' >
           <label htmlFor='telefoneCliente'>Telefone</label>
-          <input id='telefoneCliente' type='text' maxLength='15' placeholder='(99) 98765-4321' pattern="\(\d{2}\) \d{5}-\d{4}" value={telefoneCliente} onChange={(e) => setTelefoneCliente(e.target.value)} />
+          <input id='telefoneCliente' type='text' maxLength='15' placeholder='(99) 98765-4321' /*pattern="\(\d{2}\) \d{5}-\d{4}"*/ value={telefoneCliente} onChange={(e) => setTelefoneCliente(e.target.value)} />
           <label htmlFor='logradouroCliente'>Logradouro</label>
           <input id='logradouroCliente' type='text' value={logradouroCliente} onChange={(e) => setLogradouroCliente(e.target.value)} />
           <label htmlFor='cidadeCliente'>Cidade</label>
@@ -149,6 +173,9 @@ function FormularioCliente() {
       </Backdrop>
       <Snackbar open={erro ? true : false} autoHideDuration={5000} onClose={(e) => fecharErro(e)}>
         <Alert severity="error">{erro}</Alert>
+      </Snackbar>
+      <Snackbar open={sucessoCliente ? true : false} autoHideDuration={5000} onClose={(e) => fecharSucesso(e)}>
+        <Alert severity="success">{sucessoCliente}</Alert>
       </Snackbar>
     </form>
 

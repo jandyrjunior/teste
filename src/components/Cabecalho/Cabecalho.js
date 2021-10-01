@@ -21,23 +21,27 @@ function Cabecalho() {
   const [mostrarPopUp, setMostrarPopUp] = useState(false);
   const [mostrarPerfil, setMostrarPerfil] = useState(false);
   const [dadosUsuario, setDadosUsuario] = useState([]);
-  const { removeTokenStorage } = useContext(ContextoDeAutorizacao);
+  const { tokenStorage, removeTokenStorage } = useContext(ContextoDeAutorizacao);
   const classes = useStyles();
   const history = useHistory();
 
   async function carregarDados() {
     setMostrarPerfil(true);
     
-    /*const resposta = await fetch('https://api-cubos-cobranca.herokuapp.com/usuario', {
-      method: 'GET'
+    const resposta = await fetch('http://localhost:3003/usuario', {
+      method: 'GET',
+      headers: {
+        "Authorization": `Bearer ${tokenStorage}`
+      }
     });
 
-    const dados = await resposta.json();*/
+    const dados = await resposta.json();
+
     setDadosUsuario({
-      nome: 'Jandyr',
-      email: 'jandyr@email.com',
-      telefone: '',
-      cpf: ''
+      nome: dados.nome,
+      email: dados.email,
+      telefone: dados.telefone,
+      cpf: dados.cpf
     });
   }
 
@@ -50,7 +54,7 @@ function Cabecalho() {
     <div className='container-cabecalho'>
       <img className='icone-perfil' src={iconePerfil} alt='icone-perfil' onClick={() => setMostrarPopUp(!mostrarPopUp)} />
       <div className={mostrarPopUp ? 'menu-popup-on' : 'menu-popup-off'} >
-        <div className='opcao-menu' onClick={carregarDados}> {/*terminar de implementar função fetch para buscar dados do banco de dados*/}
+        <div className='opcao-menu' onClick={carregarDados}> 
           <img src={editar} alt='icone-edicao' />
           Editar
         </div>
