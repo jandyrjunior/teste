@@ -68,8 +68,6 @@ function FormularioPerfil({ setMostrarPerfil, dadosUsuario }) {
       dadosForm.cpf = cpf
     }
 
-    console.log(dadosForm)
-
     setErro('');
     setCarregando(true);
     
@@ -83,17 +81,17 @@ function FormularioPerfil({ setMostrarPerfil, dadosUsuario }) {
     });
 
     setCarregando(false);
-
+    console.log(resposta.ok)
     if (!resposta.ok) {
       setErro('Ocorreu um erro!');
       return;
     }
 
     if (resposta.ok) {
-      setSucesso('Perfil atualizado com sucesso.');
       setMostrarPerfil(false);
     }
     
+    setSucesso('Perfil atualizado com sucesso.');
   }
 
   const fecharErro = (event, reason) => {
