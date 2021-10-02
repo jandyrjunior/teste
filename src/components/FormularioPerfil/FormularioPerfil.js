@@ -93,7 +93,7 @@ function FormularioPerfil({ setMostrarPerfil, dadosUsuario }) {
       setSucesso('Perfil atualizado com sucesso.');
       setMostrarPerfil(false);
     }
-
+    e.preventDefault();
   }
 
   const fecharErro = (event, reason) => {
