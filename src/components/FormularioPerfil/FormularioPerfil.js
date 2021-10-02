@@ -37,10 +37,8 @@ function FormularioPerfil({ mostrarPerfil, setMostrarPerfil, dadosUsuario }) {
   }, [dadosUsuario]);
 
   useEffect(() => {
-    if (!mostrarPerfil) {
       setSucesso('Perfil atualizado com sucesso.');
-    }
-  }, [respostaOk])
+  }, [respostaOk]);
 
   async function onSubmit(e) {
     e.preventDefault();
