@@ -64,7 +64,7 @@ function Cabecalho() {
         </div>
       </div>
       <Backdrop className={classes.backdrop} open={mostrarPerfil} >
-        <FormularioPerfil setMostrarPerfil={setMostrarPerfil} dadosUsuario={dadosUsuario}/>
+        <FormularioPerfil mostrarPerfil={mostrarPerfil} setMostrarPerfil={setMostrarPerfil} dadosUsuario={dadosUsuario}/>
       </Backdrop>
     </div>
   );

@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-function FormularioPerfil({ setMostrarPerfil, dadosUsuario }) {
+function FormularioPerfil({ mostrarPerfil, setMostrarPerfil, dadosUsuario }) {
   const classes = useStyles();
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
@@ -26,6 +26,7 @@ function FormularioPerfil({ setMostrarPerfil, dadosUsuario }) {
   const [erro, setErro] = useState('');
   const [carregando, setCarregando] = useState(false);
   const [sucesso, setSucesso] = useState('');
+  const [respostaOk, setRespostaOk] = useState(false);
   const {tokenStorage} = useContext(ContextoDeAutorizacao);
 
   useEffect(() => {
@@ -34,6 +35,12 @@ function FormularioPerfil({ setMostrarPerfil, dadosUsuario }) {
     setCpf(dadosUsuario.cpf);
     setTelefone(dadosUsuario.telefone);
   }, [dadosUsuario]);
+
+  useEffect(() => {
+    if (!mostrarPerfil) {
+      setSucesso('Perfil atualizado com sucesso.');
+    }
+  }, [respostaOk])
 
   async function onSubmit(e) {
     e.preventDefault();
@@ -83,15 +90,15 @@ function FormularioPerfil({ setMostrarPerfil, dadosUsuario }) {
     setCarregando(false);
     console.log(resposta.ok)
     if (!resposta.ok) {
-      setErro('Ocorreu um erro!');
+      setErro('Ocorreu um erro! Perfil não atualizado.');
       return;
     }
 
     if (resposta.ok) {
       setMostrarPerfil(false);
+      setRespostaOk(true);
     }
     
-    setSucesso('Perfil atualizado com sucesso.');
   }
 
   const fecharErro = (event, reason) => {
