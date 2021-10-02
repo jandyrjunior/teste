@@ -36,7 +36,7 @@ function FormularioPerfil({ setMostrarPerfil, dadosUsuario }) {
   }, [dadosUsuario]);
 
   async function onSubmit(e) {
-    
+    e.preventDefault();
     if (!(email || nome)) {
       e.preventDefault();
       setErro('Favor preencher os campos de nome e e-mail.');
@@ -93,7 +93,7 @@ function FormularioPerfil({ setMostrarPerfil, dadosUsuario }) {
       setSucesso('Perfil atualizado com sucesso.');
       setMostrarPerfil(false);
     }
-    e.preventDefault();
+    
   }
 
   const fecharErro = (event, reason) => {
