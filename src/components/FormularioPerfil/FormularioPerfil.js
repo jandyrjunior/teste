@@ -87,13 +87,13 @@ function FormularioPerfil({ setMostrarPerfil, dadosUsuario }) {
     setCarregando(false);
 
     if (!resposta.ok) {
-      setErro('Deu merda');
+      setErro('Ocorreu um erro!');
       return;
     }
 
     if (resposta.ok) {
       setSucesso('Perfil atualizado com sucesso.');
-      history.push('/home');
+      setMostrarPerfil(false);
     }
 
   }
