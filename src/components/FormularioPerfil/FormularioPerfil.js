@@ -7,7 +7,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Alert } from '@material-ui/lab';
 import ContextoDeAutorizacao from '../../contextos/ContextoDeAutorizacao';
 import InputMask from 'react-input-mask';
-import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   backdrop: {
@@ -28,7 +27,6 @@ function FormularioPerfil({ setMostrarPerfil, dadosUsuario }) {
   const [carregando, setCarregando] = useState(false);
   const [sucesso, setSucesso] = useState('');
   const {tokenStorage} = useContext(ContextoDeAutorizacao);
-  const history = useHistory();
 
   useEffect(() => {
     setNome(dadosUsuario.nome);
