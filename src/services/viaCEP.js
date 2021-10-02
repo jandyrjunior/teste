@@ -1,6 +1,6 @@
 export async function obterDadosViaCEP(cep) {
   try {
-    const resposta = await fetch(`http://viacep.com.br/ws/${cep}/json/`, {
+    const resposta = await fetch(`https://viacep.com.br/ws/${cep}/json/`, {
       method: 'GET'
     });
 
