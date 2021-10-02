@@ -94,7 +94,6 @@ function FormularioPerfil({ setMostrarPerfil, dadosUsuario }) {
     if (resposta.ok) {
       setSucesso('Perfil atualizado com sucesso.');
       history.push('/home');
-      return;
     }
 
   }
