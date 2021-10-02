@@ -6,7 +6,7 @@ import { Backdrop, CircularProgress, Snackbar } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Alert } from '@material-ui/lab';
 import ContextoDeAutorizacao from '../../contextos/ContextoDeAutorizacao';
-import { useHistory } from 'react-router-dom';
+import InputMask from 'react-input-mask';
 
 const useStyles = makeStyles((theme) => ({
   backdrop: {
@@ -27,7 +27,6 @@ function FormularioPerfil({ setMostrarPerfil, dadosUsuario }) {
   const [carregando, setCarregando] = useState(false);
   const [sucesso, setSucesso] = useState('');
   const {tokenStorage} = useContext(ContextoDeAutorizacao);
-  const history = useHistory();
 
   useEffect(() => {
     setNome(dadosUsuario.nome);
@@ -37,16 +36,19 @@ function FormularioPerfil({ setMostrarPerfil, dadosUsuario }) {
   }, [dadosUsuario]);
 
   async function onSubmit(e) {
-
+    
     if (!(email || nome)) {
+      e.preventDefault();
       setErro('Favor preencher os campos de nome e e-mail.');
       return;
     }
     if (!nome) {
+      e.preventDefault();
       setErro('Favor preencher o campo do nome.');
       return;
     }
     if (!email) {
+      e.preventDefault();
       setErro('Favor preencher o campo de e-mail.');
       return;
     }
@@ -71,7 +73,7 @@ function FormularioPerfil({ setMostrarPerfil, dadosUsuario }) {
     setErro('');
     setCarregando(true);
     
-    const resposta = await fetch(`https://api-cubos-cobranca.herokuapp.com/usuario`, {
+    const resposta = await fetch('https://api-cubos-cobranca.herokuapp.com/usuario', {
       method: "PUT",
       body: JSON.stringify(dadosForm),
       headers: {
@@ -89,7 +91,7 @@ function FormularioPerfil({ setMostrarPerfil, dadosUsuario }) {
 
     if (resposta.ok) {
       setSucesso('Perfil atualizado com sucesso.');
-      history.push('/home');
+      return;
     }
 
   }
@@ -111,7 +113,7 @@ function FormularioPerfil({ setMostrarPerfil, dadosUsuario }) {
   };
 
   return (
-    <form className='container-formulario' onSubmit={(e) => onSubmit(e)}> {/*criar a funcao de submitar os dados*/}
+    <form className='container-formulario' onSubmit={(e) => onSubmit(e)}> 
       <p className='btn-fechar' onClick={() => setMostrarPerfil(false)}>X</p>
       <h4>{'//'} EDITAR USUÁRIO</h4>
       <label htmlFor='nome'>Nome</label>
@@ -124,9 +126,9 @@ function FormularioPerfil({ setMostrarPerfil, dadosUsuario }) {
         <img className='icone-vista' src={verSenha ? view : noView} alt='icone-olho' onClick={() => setVerSenha(!verSenha)} />
       </div>
       <label htmlFor='cpf'>CPF</label>
-      <input id='cpf' type='text' placeholder='xxx.xxx.xxx-xx' pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" value={cpf} onChange={(e) => setCpf(e.target.value)} />
+      <InputMask mask='999.999.999-99' id='cpf' maskPlaceholder='222.222.222-22' /*pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"*/ value={cpf} onChange={(e) => setCpf(e.target.value)} />
       <label htmlFor='telefone'>Telefone</label>
-      <input id='telefone' type='text' placeholder='(xx) xxxxx-xxxx' pattern="\(\d{2}\) \d{5}-\d{4}" value={telefone} onChange={(e) => setTelefone(e.target.value)} />
+      <InputMask mask='(99) 99999-9999' id='telefone' maskPlaceholder='(22) 22222-2222' /*pattern="\(\d{2}\) \d{5}-\d{4}"*/ value={telefone} onChange={(e) => setTelefone(e.target.value)} />
       <button className='btn-submit' type='submit'>Editar conta</button>
       <Backdrop className={classes.backdrop} open={carregando} >
         <CircularProgress color="inherit" />

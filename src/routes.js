@@ -26,6 +26,13 @@ function Routes() {
           <Route path='/home' component={Home} />
           <Route path='/construcao' component={Construcao} />
           <Route path='/clientes' component={Clientes} />
+          {
+            token && (
+              <>
+
+              </>
+            )
+          }
         </Switch>
       </Router>
     </ContextoDeAutorizacao.Provider>
