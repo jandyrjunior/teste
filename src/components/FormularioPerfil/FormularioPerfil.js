@@ -26,8 +26,7 @@ function FormularioPerfil({ mostrarPerfil, setMostrarPerfil, dadosUsuario }) {
   const [erro, setErro] = useState('');
   const [carregando, setCarregando] = useState(false);
   const [sucesso, setSucesso] = useState('');
-  const [respostaOk, setRespostaOk] = useState(false);
-  const {tokenStorage} = useContext(ContextoDeAutorizacao);
+  const { tokenStorage } = useContext(ContextoDeAutorizacao);
 
   useEffect(() => {
     setNome(dadosUsuario.nome);
@@ -35,10 +34,6 @@ function FormularioPerfil({ mostrarPerfil, setMostrarPerfil, dadosUsuario }) {
     setCpf(dadosUsuario.cpf);
     setTelefone(dadosUsuario.telefone);
   }, [dadosUsuario]);
-
-  useEffect(() => {
-      setSucesso('Perfil atualizado com sucesso.');
-  }, [respostaOk]);
 
   async function onSubmit(e) {
     e.preventDefault();
@@ -75,7 +70,7 @@ function FormularioPerfil({ mostrarPerfil, setMostrarPerfil, dadosUsuario }) {
 
     setErro('');
     setCarregando(true);
-    
+
     const resposta = await fetch('https://api-cubos-cobranca.herokuapp.com/usuario', {
       method: "PUT",
       body: JSON.stringify(dadosForm),
@@ -86,17 +81,18 @@ function FormularioPerfil({ mostrarPerfil, setMostrarPerfil, dadosUsuario }) {
     });
 
     setCarregando(false);
-    console.log(resposta.ok)
     if (!resposta.ok) {
       setErro('Ocorreu um erro! Perfil não atualizado.');
       return;
     }
 
     if (resposta.ok) {
-      setMostrarPerfil(false);
-      setRespostaOk(true);
+      setSucesso('Perfil atualizado com sucesso.');
+      setTimeout(() => {
+        setMostrarPerfil(false);
+      }, 2000);
     }
-    
+
   }
 
   const fecharErro = (event, reason) => {
@@ -116,7 +112,7 @@ function FormularioPerfil({ mostrarPerfil, setMostrarPerfil, dadosUsuario }) {
   };
 
   return (
-    <form className='container-formulario' onSubmit={(e) => onSubmit(e)}> 
+    <form className='container-formulario' onSubmit={(e) => onSubmit(e)}>
       <p className='btn-fechar' onClick={() => setMostrarPerfil(false)}>X</p>
       <h4>{'//'} EDITAR USUÁRIO</h4>
       <label htmlFor='nome'>Nome</label>

@@ -87,23 +87,25 @@ function FormularioCliente() {
         }
       });
 
-      console.log(resposta)
+
+      setCarregando(false);
+      const dados = await resposta.json();
+      
       if (!resposta.ok) {
-        setErro('Deu merda');
+        setErro(dados);
         return;
       }
 
       if (resposta.ok) {
         setSucessoCliente('Cliente cadastrado com sucesso.');
-        history.push('/home');
-        return
+        setTimeout(() => {
+          history.push('/home');
+        }, 2000);
       }
     } catch (error) {
       console.log(error.message);
     }
 
-    setCarregando(false);
-    
     e.preventDefault();
 
   }
@@ -143,7 +145,7 @@ function FormularioCliente() {
   }, [cepCliente]);
 
   return (
-    <form className='form-clientes' onSubmit={(e) => onSubmit(e)}>
+    <form className='form-clientes' onSubmit={(e) => onSubmit(e)}> 
       <div className='form-clientes-pt-1'>
         <label htmlFor='nomeCliente'>Nome</label>
         <input id='nomeCliente' type='text' value={nomeCliente} onChange={(e) => setNomeCliente(e.target.value)} />
