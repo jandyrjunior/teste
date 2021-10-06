@@ -25,16 +25,16 @@ function CardListaDeClientes() {
 
   async function carregarDadosCliente() {
     setMostrarPerfilCliente(true);
-      
+
     const resposta = await fetch('https://api-cubos-cobranca.herokuapp.com/usuario', {
       method: 'GET',
       headers: {
         "Authorization": `Bearer ${tokenStorage}`
       }
     });
-  
+
     const dados = await resposta.json();
-  
+
     setDadosCliente({
       nome: dados.nome,
       email: dados.email,
@@ -45,24 +45,23 @@ function CardListaDeClientes() {
     });
   }
 
-  async function buscarClientes() {
-
-    const resposta = await fetch('https://api-cubos-cobranca.herokuapp.com/usuario', {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${tokenStorage}`
-      }
-    });
-
-    console.log(resposta);
-    const dados = await resposta.json();
-    setClientes(dados);
-  }
-
   useEffect(() => {
+    async function buscarClientes() {
+
+      const resposta = await fetch('https://api-cubos-cobranca.herokuapp.com/usuario', {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${tokenStorage}`
+        }
+      });
+
+      console.log(resposta);
+      const dados = await resposta.json();
+      setClientes(dados);
+    }
     buscarClientes()
-  }, []);
+  }, [tokenStorage]);
 
   return (
     <div className='card-lista'>
@@ -80,12 +79,12 @@ function CardListaDeClientes() {
       <div className='container-cobranca-feita'> {'R$ 00.000,00'}</div>
       <div className='container-cobranca-recebida'>{'R$ 00.000,00'}</div>
       <div className='container-status'>{'EM DIA'}</div>
-      <img className='container-btn-editar' src={editar} alt='icone-editar' onClick={carregarDadosCliente}/>
+      <img className='container-btn-editar' src={editar} alt='icone-editar' onClick={carregarDadosCliente} />
       <Backdrop className={classes.backdrop} open={mostrarPerfilCliente} >
-        <EditarCliente mostrarPerfilCliente={mostrarPerfilCliente} setMostrarPerfilCliente={setMostrarPerfilCliente} dadosCliente={dadosCliente}/>
+        <EditarCliente mostrarPerfilCliente={mostrarPerfilCliente} setMostrarPerfilCliente={setMostrarPerfilCliente} dadosCliente={dadosCliente} />
       </Backdrop>
       <Backdrop className={classes.backdrop} open={mostrarDetalheCliente} >
-        <DetalheCliente mostrarDetalheCliente={mostrarDetalheCliente} setMostrarDetalheCliente={setMostrarDetalheCliente} dadosCliente={dadosCliente}/>
+        <DetalheCliente mostrarDetalheCliente={mostrarDetalheCliente} setMostrarDetalheCliente={setMostrarDetalheCliente} dadosCliente={dadosCliente} />
       </Backdrop>
     </div>
   );
