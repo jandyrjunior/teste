@@ -141,6 +141,19 @@ function EditarCliente({ dadosCliente, mostrarPerfilCliente, setMostrarPerfilCli
     carregarDadosPeloCEP(cepCliente);
   }, [cepCliente]);
 
+  useEffect(() => {
+    setNomeCliente(dadosCliente.nome);
+    setEmailCliente(dadosCliente.email);
+    setCpfCliente(dadosCliente.cpf);
+    setTelefoneCliente(dadosCliente.telefone);
+    setCepCliente(dadosCliente.cep || '41830-450');
+    setLogradouroCliente(dadosCliente.logradouro || 'Rua Ceará');
+    setBairroCliente(dadosCliente.bairro || 'Pituba');
+    setCidadeCliente(dadosCliente.cidade || 'Salvador');
+    setComplementoCliente(dadosCliente.complemento || '265, Ap 502');
+    setPtRefCliente(dadosCliente.referencia || 'Hiperideal');
+  }, [dadosCliente])
+
   return (
     <form className='form-clientes' onSubmit={(e) => onSubmit(e)}>
       <p className='btn-fechar-2' onClick={() => setMostrarPerfilCliente(false)}>X</p>

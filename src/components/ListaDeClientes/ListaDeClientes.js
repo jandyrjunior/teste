@@ -17,13 +17,12 @@ const useStyles = makeStyles((theme) => ({
 
 function CardListaDeClientes() {
   const { tokenStorage } = useContext(ContextoDeAutorizacao);
-  const [clientes, setClientes] = useState([]);
   const [dadosCliente, setDadosCliente] = useState([]);
   const [mostrarPerfilCliente, setMostrarPerfilCliente] = useState(false);
   const [mostrarDetalheCliente, setMostrarDetalheCliente] = useState(false);
   const classes = useStyles();
 
-  async function carregarDadosCliente() {
+  /*async function carregarDadosCliente() {
     setMostrarPerfilCliente(true);
 
     const resposta = await fetch('https://api-cubos-cobranca.herokuapp.com/usuario', {
@@ -43,7 +42,7 @@ function CardListaDeClientes() {
       cep: dados.cep,
       logradouro: dados.logradouuro,
     });
-  }
+  }*/
 
   useEffect(() => {
     async function buscarClientes() {
@@ -58,7 +57,7 @@ function CardListaDeClientes() {
 
       console.log(resposta);
       const dados = await resposta.json();
-      setClientes(dados);
+      setDadosCliente(dados);
     }
     buscarClientes()
   }, [tokenStorage]);
@@ -66,20 +65,20 @@ function CardListaDeClientes() {
   return (
     <div className='card-lista'>
       <div className='card-lista-dados'>
-        <p className='card-lista-nome' onClick={setMostrarDetalheCliente}>{clientes.nome}</p>
+        <p className='card-lista-nome' onClick={setMostrarDetalheCliente}>{dadosCliente.nome}</p>
         <div className='card-lista-email' >
           <img className='card-lista-img' src={iconeEmail} alt='icone-email' />
-          <p>{clientes.email}</p>
+          <p>{dadosCliente.email}</p>
         </div>
         <div className='card-lista-telefone' >
           <img className='card-lista-img' src={iconeTelefone} alt='icone-telefone' />
-          <p>{clientes.telefone}</p>
+          <p>{dadosCliente.telefone}</p>
         </div>
       </div>
       <div className='container-cobranca-feita'> {'R$ 00.000,00'}</div>
       <div className='container-cobranca-recebida'>{'R$ 00.000,00'}</div>
       <div className='container-status'>{'EM DIA'}</div>
-      <img className='container-btn-editar' src={editar} alt='icone-editar' onClick={carregarDadosCliente} />
+      <img className='container-btn-editar' src={editar} alt='icone-editar' onClick={setMostrarPerfilCliente} />
       <Backdrop className={classes.backdrop} open={mostrarPerfilCliente} >
         <EditarCliente mostrarPerfilCliente={mostrarPerfilCliente} setMostrarPerfilCliente={setMostrarPerfilCliente} dadosCliente={dadosCliente} />
       </Backdrop>
