@@ -1,0 +1,36 @@
+.container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.container .container-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.cabecalho {
+    
+    border: 1px solid green
+}
+
+.container-lista-de-cobrancas {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid blue;
+    flex-grow: 1;
+}
+
+.cabecalho-lista-cobrancas {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 960px;
+    height: 32px;
+    background-color: #9dbbc3;
+    border-radius: 8px;
+}

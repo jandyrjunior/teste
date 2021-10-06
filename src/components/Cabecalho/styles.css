@@ -1,3 +1,8 @@
+.container-cabecalho {
+    margin-left: auto;
+    margin-bottom: auto;
+}
+
 .opcao-menu {
     display: flex;
     margin-top: 10px;

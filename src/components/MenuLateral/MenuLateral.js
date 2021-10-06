@@ -13,7 +13,7 @@ function MenuLateral() {
         <img className='icone' src={home} alt='icone-home' />
         HOME
       </Link>
-      <Link className='btn-menu' to='/construcao'>
+      <Link className='btn-menu' to='/listar-cobrancas'>
         <img className='icone' src={dinheiro} alt='icone-dinheiro' />
         COBRANÇAS
       </Link>

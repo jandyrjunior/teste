@@ -1,5 +1,12 @@
+.container-btn-lista {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    flex-grow: 1;
+}
+
 .container-btn-add-clientes {
-    margin-left: 72px;
     margin-right: auto;
 }
 
@@ -45,7 +52,7 @@
     align-items: center;
     margin-top: 56px;
     margin-right: auto;
-    margin-left: 72px;
+    width: 100%;
 }
 
 .p1 {
@@ -69,7 +76,7 @@
     margin-top: 8px;
     margin-right: auto;
     margin-bottom: auto;
-    height: 460px;
+    max-height: 70vh;
     overflow-y: scroll;
     overflow-x: hidden;
 }

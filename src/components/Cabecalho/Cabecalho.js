@@ -51,7 +51,7 @@ function Cabecalho() {
   }
 
   return (
-    <div className='container-cabecalho'>
+    <div className='container-cabecalho'> 
       <img className='icone-perfil' src={iconePerfil} alt='icone-perfil' onClick={() => setMostrarPopUp(!mostrarPopUp)} />
       <div className={mostrarPopUp ? 'menu-popup-on' : 'menu-popup-off'} >
         <div className='opcao-menu' onClick={carregarDados}> 

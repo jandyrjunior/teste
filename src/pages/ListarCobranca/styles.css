@@ -1,0 +1,64 @@
+.container-lista-de-cobranca {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.cabecalho-lista-cobranca {
+    width: 1020px;
+    height: 32px;
+    background-color: #9dbbc3;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    color: white;
+    font-size: 14px;
+}
+
+.cabecalho-lista-cobranca p {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.p5 {
+    margin-left: 46px;
+}
+
+.p6 {
+    margin-left: 61px;
+}
+
+.p7 {
+    margin-left: 144px;
+}
+
+.p8 {
+    margin-left: 142px;
+}
+
+.p9 {
+    margin-left: 126px;
+}
+
+.p10 {
+    margin-left: 89px;
+    margin-right: 37px;
+}
+
+.lista-de-cards-cobranca {
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 21px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.lista-de-cards-cobranca::-webkit-scrollbar {
+    display: none;
+  }
