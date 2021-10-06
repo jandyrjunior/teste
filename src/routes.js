@@ -12,6 +12,7 @@ import Clientes from './pages/Clientes';
 import ContextoDeAutorizacao from './contextos/ContextoDeAutorizacao';
 import React, { useState } from 'react';
 import { useLocalStorage } from 'react-use';
+import ListarClientes from './pages/ListarClientes';
 
 function Routes() {
   const [tokenStorage, setTokenStorage, removeTokenStorage] = useLocalStorage('tokenStorage', '');
@@ -25,7 +26,8 @@ function Routes() {
           <Route path='/cadastro' component={Cadastro} />
           <Route path='/home' component={Home} />
           <Route path='/construcao' component={Construcao} />
-          <Route path='/clientes' component={Clientes} />
+          <Route path='/adicionar-clientes' component={Clientes} />
+          <Route path='/listar-clientes' component={ListarClientes} />
           {
             token && (
               <>

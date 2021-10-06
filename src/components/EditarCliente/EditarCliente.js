@@ -1,6 +1,6 @@
 import './styles.css';
 import { useContext, useEffect, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { Backdrop, CircularProgress, Snackbar } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Alert } from '@material-ui/lab';
@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-function FormularioCliente() {
+function EditarCliente({ dadosCliente, mostrarPerfilCliente, setMostrarPerfilCliente }) {
 
   const [nomeCliente, setNomeCliente] = useState('');
   const [emailCliente, setEmailCliente] = useState('');
@@ -71,15 +71,12 @@ function FormularioCliente() {
       referencia: ptRefCliente
     };
 
-    console.log(tokenStorage);
-    console.log(dadosFormCliente);
-
     setErro('');
     setCarregando(true);
 
     try {
       const resposta = await fetch('https://api-cubos-cobranca.herokuapp.com/cliente', {
-        method: "POST",
+        method: "PUT",
         body: JSON.stringify(dadosFormCliente),
         headers: {
           "Content-type": "application/json",
@@ -90,16 +87,16 @@ function FormularioCliente() {
 
       setCarregando(false);
       const dados = await resposta.json();
-      
+
       if (!resposta.ok) {
         setErro(dados);
         return;
       }
 
       if (resposta.ok) {
-        setSucessoCliente('Cliente cadastrado com sucesso.');
+        setSucessoCliente('Cliente atualizado com sucesso.');
         setTimeout(() => {
-          history.push('/home');
+          history.push('/listar-clientes');
         }, 2000);
       }
     } catch (error) {
@@ -145,7 +142,8 @@ function FormularioCliente() {
   }, [cepCliente]);
 
   return (
-    <form className='form-clientes' onSubmit={(e) => onSubmit(e)}> 
+    <form className='form-clientes' onSubmit={(e) => onSubmit(e)}>
+      <p className='btn-fechar-2' onClick={() => setMostrarPerfilCliente(false)}>X</p>
       <div className='form-clientes-pt-1'>
         <label htmlFor='nomeCliente'>Nome</label>
         <input id='nomeCliente' type='text' value={nomeCliente} onChange={(e) => setNomeCliente(e.target.value)} />
@@ -175,7 +173,7 @@ function FormularioCliente() {
         </div>
       </div>
       <div className='form-clientes-pt-3'>
-        <Link className='btn-cancelar' to='/listar-clientes'>Cancelar</Link>
+        <div className='btn-cancelar' onClick={() => setMostrarPerfilCliente(false)}>Cancelar</div>
         <button className='btn-submit' type='submit'>Adicionar Cliente</button>
       </div>
       <Backdrop className={classes.backdrop} open={carregando} >
@@ -192,4 +190,4 @@ function FormularioCliente() {
   );
 }
 
-export default FormularioCliente;
+export default EditarCliente;

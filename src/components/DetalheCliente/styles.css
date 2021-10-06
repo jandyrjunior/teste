@@ -1,0 +1,122 @@
+.card-detalhe-cliente {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 0px 0px 5px 5px #00000020;
+}
+
+.card-detalhe-cliente h3 {
+    font-size: 36px;
+    font-weight: 600;
+    color: #374952;
+    margin: 0;
+    padding: 0;
+    margin-left: 62px;
+    margin-right: auto;
+}
+
+.p-cpf {
+    font-size: 14px;
+    font-weight: 400;
+    color: #323232;
+    margin: 0;
+    padding: 0;
+    margin-top: 26px;
+    margin-left: 62px;
+    margin-right: auto;
+}
+
+.container-detalhes-e-cobrancas {
+    display: flex;
+    align-items: flex-start;
+}
+
+.container-detalhes {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 132px;
+}
+
+.detalhe-email-telefone {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 49px;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
+
+.detalhe-email-telefone p {
+    margin: 0;
+    padding: 0;
+    margin-left: 9px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #4c4c4c;
+}
+
+.icone-email {
+    margin-left: 62px;
+}
+
+.icone-telefone {
+    margin-left: 25px;
+}
+
+.container-endereco {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 26px;
+    margin-left: 62px;
+    margin-right: auto;
+}
+
+.endereco-1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin-right: 58px;
+}
+
+h5 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #374952;
+    margin: 0;
+    padding: 0;
+}
+
+.endereco-1 p {
+    font-size: 12px;
+    font-weight: 400;
+    color: #323232;
+    margin: 0;
+    padding: 0;
+    margin-top: 10px;
+}
+
+.divisor {
+    border-left: 1px solid #dddddd;
+    height: 321px;
+}
+
+.container-cobrancas {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-top: 18px;
+    height: 300px;
+    overflow-y: scroll;
+}
+
+.container-cobrancas::-webkit-scrollbar-track {
+    scrollbar-width: thin;
+    background-color: red;
+}

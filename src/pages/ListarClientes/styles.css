@@ -1,0 +1,72 @@
+.container-btn-add-clientes {
+    margin-left: 72px;
+    margin-right: auto;
+}
+
+.btn-add-clientes {
+    font-size: 14px;
+    font-weight: 600;
+    color: #da0175;
+    padding: 11px 60px;
+    border-radius: 20px;
+    border: 1px solid #da0175;
+    background-color: #f7f7f7;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn-add-clientes:hover {
+    font-size: 14px;
+    font-weight: 600;
+    color: #ffffff;
+    padding: 11px 60px;
+    border-radius: 20px;
+    border: 1px solid #da0175;
+    background-color: #da0175;
+    cursor: pointer;
+}
+
+.container-lista-de-clientes {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    width: 100%;
+}
+
+.cabecalho-lista-clientes {
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+    background-color: #9dbbc3;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    margin-top: 56px;
+    margin-right: auto;
+    margin-left: 72px;
+}
+
+.p1 {
+    margin-left: 24px;
+}
+
+.p2 {
+    margin-left: 192px;
+}
+
+.p3 {
+    margin-left: 72px;
+}
+
+.p4 {
+    margin-left: 56px;
+    margin-right: 233px;
+}
+
+.lista-de-cards {
+    margin-top: 8px;
+    margin-right: auto;
+    margin-bottom: auto;
+}

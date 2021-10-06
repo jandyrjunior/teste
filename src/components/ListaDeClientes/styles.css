@@ -1,0 +1,82 @@
+.card-lista {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 8px;
+    margin-left: 72px;
+    margin-right: auto;
+    width: 100%;
+}
+
+.card-lista-dados {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 24px;
+    width: 192px;
+}
+
+.card-lista-nome {
+    font-size: 14px;
+    font-weight: 600;
+    color: #4c4c4c;
+    cursor: pointer;
+}
+
+.card-lista-email {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 14px;
+    font-weight: 400;
+    color: #4c4c4c;
+    margin-top: 14px;
+}
+
+.card-lista-email p {
+    margin: 0;
+    margin-left: 9px;
+    padding: 0;
+}
+
+.card-lista-telefone {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 14px;
+    font-weight: 400;
+    color: #4c4c4c;    
+    margin-top: 14px;
+    margin-bottom: 16px;
+}
+
+.card-lista-telefone p {
+    margin: 0;
+    margin-left: 9px;
+    padding: 0;
+}
+
+.container-cobranca-feita {
+    font-size: 14px;
+    font-weight: 400;
+    color: #4c4c4c;
+    margin-left: 60px;
+}
+
+.container-cobranca-recebida {
+    font-size: 14px;
+    font-weight: 400;
+    color: #4c4c4c;
+    margin-left: 103px;
+}
+
+.container-status {
+    margin: 0;
+    margin-left: 120px;
+}
+
+.container-btn-editar {
+    margin-left: 123px;
+    margin-right: auto;
+    cursor: pointer;
+}
