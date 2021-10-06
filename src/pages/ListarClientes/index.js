@@ -26,6 +26,22 @@ function ListarClientes() {
           </div>
           <div className='lista-de-cards'>
             <CardListaDeClientes />
+            <CardListaDeClientes />
+            <CardListaDeClientes />
+            <CardListaDeClientes />
+            <CardListaDeClientes />
+            <CardListaDeClientes />
+            <CardListaDeClientes />
+            <CardListaDeClientes />
+            <CardListaDeClientes />
+            <CardListaDeClientes />
+            <CardListaDeClientes />
+            <CardListaDeClientes />
+            <CardListaDeClientes />
+            <CardListaDeClientes />
+            <CardListaDeClientes />
+            <CardListaDeClientes />
+            <CardListaDeClientes />
           </div>
         </div>
       </div>

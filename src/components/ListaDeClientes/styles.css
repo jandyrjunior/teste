@@ -5,6 +5,7 @@
     border-radius: 8px;
     margin-left: 72px;
     margin-right: auto;
+    margin-top: 16px;
     width: 100%;
 }
 
@@ -77,6 +78,6 @@
 
 .container-btn-editar {
     margin-left: 123px;
-    margin-right: auto;
+    margin-right: 70px;
     cursor: pointer;
 }

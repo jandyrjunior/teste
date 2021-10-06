@@ -114,9 +114,9 @@ h5 {
     margin-top: 18px;
     height: 300px;
     overflow-y: scroll;
+    overflow-x: hidden;
 }
 
-.container-cobrancas::-webkit-scrollbar-track {
-    scrollbar-width: thin;
-    background-color: red;
-}
+.container-cobrancas::-webkit-scrollbar {
+    display: none;
+  }

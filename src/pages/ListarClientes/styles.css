@@ -69,4 +69,11 @@
     margin-top: 8px;
     margin-right: auto;
     margin-bottom: auto;
+    height: 460px;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
+
+.lista-de-cards::-webkit-scrollbar {
+    display: none;
+  }

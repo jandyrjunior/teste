@@ -187,7 +187,7 @@ function EditarCliente({ dadosCliente, mostrarPerfilCliente, setMostrarPerfilCli
       </div>
       <div className='form-clientes-pt-3'>
         <div className='btn-cancelar' onClick={() => setMostrarPerfilCliente(false)}>Cancelar</div>
-        <button className='btn-submit' type='submit'>Adicionar Cliente</button>
+        <button className='btn-submit' type='submit'>Editar Cliente</button>
       </div>
       <Backdrop className={classes.backdrop} open={carregando} >
         <CircularProgress color="inherit" />

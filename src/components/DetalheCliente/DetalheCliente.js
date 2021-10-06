@@ -55,7 +55,6 @@ function DetalheCliente({ dadosCliente, mostrarDetalheCliente, setMostrarDetalhe
           <ResumoCobranca />
           <ResumoCobranca />
           <ResumoCobranca />
-          <ResumoCobranca />
         </div>
       </div>
     </div>
