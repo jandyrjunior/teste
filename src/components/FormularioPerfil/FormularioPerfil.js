@@ -127,7 +127,7 @@ function FormularioPerfil({ mostrarPerfil, setMostrarPerfil, dadosUsuario }) {
       <label htmlFor='cpf'>CPF</label>
       <InputMask mask='999.999.999-99' id='cpf' value={cpf} onChange={(e) => setCpf(e.target.value)} />
       <label htmlFor='telefone'>Telefone</label>
-      <InputMask mask='(99) 99999-9999' id='telefone' onChange={(e) => setTelefone(e.target.value)} />
+      <InputMask mask='(99) 99999-9999' id='telefone' value={telefone} onChange={(e) => setTelefone(e.target.value)} />
       <button className='btn-submit' type='submit'>Editar conta</button>
       <Backdrop className={classes.backdrop} open={carregando} >
         <CircularProgress color="inherit" />

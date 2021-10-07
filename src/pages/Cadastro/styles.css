@@ -90,13 +90,10 @@
 }
 
 .card-login input::placeholder {
-    color: #a5a5a566;
-} 
-
-.card-login input::placeholder {
     font-size: 14px;
     font-weight: 400;
     color: #a5a5a5;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .container-input-senha {

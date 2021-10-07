@@ -14,6 +14,7 @@ import React, { useState } from 'react';
 import { useLocalStorage } from 'react-use';
 import ListarClientes from './pages/ListarClientes';
 import ListarCobranca from './pages/ListarCobranca';
+import Cobrancas from './pages/Cobranca';
 
 function Routes() {
   const [tokenStorage, setTokenStorage, removeTokenStorage] = useLocalStorage('tokenStorage', '');
@@ -28,6 +29,7 @@ function Routes() {
           <Route path='/home' component={Home} />
           <Route path='/construcao' component={Construcao} />
           <Route path='/adicionar-clientes' component={Clientes} />
+          <Route path='/adicionar-cobrancas' component={Cobrancas} />
           <Route path='/listar-clientes' component={ListarClientes} />
           <Route path='/listar-cobrancas' component={ListarCobranca} />
           {

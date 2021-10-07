@@ -51,6 +51,7 @@
 
 .container-formulario input::placeholder {
     color: #a5a5a566;
+    font-family: 'Montserrat', sans-serif;
 } 
 
 .container-input-nova-senha {

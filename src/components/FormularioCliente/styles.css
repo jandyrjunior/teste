@@ -19,6 +19,7 @@
 
 .form-clientes input::placeholder {
     color: #a5a5a566;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .form-clientes-pt-1 {

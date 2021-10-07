@@ -27,7 +27,7 @@
     margin-right: 6px;
 }
 
-.container-dados-cobranca-1 .descricao-cobranca {
+.container-dados-cobranca-1 .descricao-da-cobranca {
     font-size: 14px;
     font-weight: 400;    
     text-overflow: ellipsis;
@@ -37,7 +37,7 @@
     margin-right: 55px;
 }
 
-.container-dados-cobranca-1 .valor-cobranca {
+.container-dados-cobranca-1 .valor-da-cobranca {
     font-size: 14px;
     font-weight: 700;
     padding: 0;

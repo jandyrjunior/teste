@@ -21,7 +21,7 @@ function MenuLateral() {
         <img className='icone' src={clientes} alt='icone-clientes' />
         CLIENTES
       </Link>
-      <Link className='btn-criar-cobranca' to='/construcao'>Criar cobrança</Link>
+      <Link className='btn-criar-cobranca' to='/adicionar-cobrancas'>Criar cobrança</Link>
     </div>
   )
 }

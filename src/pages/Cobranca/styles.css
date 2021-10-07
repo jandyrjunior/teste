@@ -11,11 +11,6 @@
     align-items: center;
 }
 
-.cabecalho {
-    
-    border: 1px solid green
-}
-
 .container-lista-de-cobrancas {
     display: flex;
     flex-direction: column;

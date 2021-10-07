@@ -71,9 +71,6 @@ function FormularioCliente() {
       referencia: ptRefCliente
     };
 
-    console.log(tokenStorage);
-    console.log(dadosFormCliente);
-
     setErro('');
     setCarregando(true);
 
@@ -155,9 +152,9 @@ function FormularioCliente() {
       <div className='form-clientes-pt-2'>
         <div className='form-clientes-pt-2-1' >
           <label htmlFor='cpfCliente'>CPF</label>
-          <InputMask mask="999.999.999-99" id='cpfCliente' maskPlaceholder='222.222.222-22' /*pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"*/ value={cpfCliente} onChange={(e) => setCpfCliente(e.target.value)} />
+          <InputMask mask="999.999.999-99" id='cpfCliente' maskPlaceholder='222.222.222-22' value={cpfCliente} onChange={(e) => setCpfCliente(e.target.value)} />
           <label htmlFor='cepCliente'>CEP</label>
-          <InputMask mask='99999-999' id='cepCliente' maskPlaceholder='22222-222' /*pattern="\d{5}\d{-}\d{3}"*/ value={cepCliente} onChange={(e) => setCepCliente(e.target.value)} />
+          <InputMask mask='99999-999' id='cepCliente' maskPlaceholder='22222-222' value={cepCliente} onChange={(e) => setCepCliente(e.target.value)} />
           <label htmlFor='bairroCliente'>Bairro</label>
           <input id='bairroCliente' type='text' value={bairroCliente} onChange={(e) => setBairroCliente(e.target.value)} />
           <label htmlFor='complementoCliente'>Complemento</label>
@@ -165,7 +162,7 @@ function FormularioCliente() {
         </div>
         <div className='form-clientes-pt-2-2' >
           <label htmlFor='telefoneCliente'>Telefone</label>
-          <InputMask mask='(99) 99999 9999' id='telefoneCliente' maskPlaceholder='(99) 98765-4321' /*pattern="\(\d{2}\) \d{5}-\d{4}"*/ value={telefoneCliente} onChange={(e) => setTelefoneCliente(e.target.value)} />
+          <InputMask mask='(99) 99999 9999' id='telefoneCliente' maskPlaceholder='(99) 98765-4321' value={telefoneCliente} onChange={(e) => setTelefoneCliente(e.target.value)} />
           <label htmlFor='logradouroCliente'>Logradouro</label>
           <input id='logradouroCliente' type='text' value={logradouroCliente} onChange={(e) => setLogradouroCliente(e.target.value)} />
           <label htmlFor='cidadeCliente'>Cidade</label>

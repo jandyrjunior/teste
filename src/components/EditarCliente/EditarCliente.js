@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-function EditarCliente({ dadosCliente, mostrarPerfilCliente, setMostrarPerfilCliente }) {
+function EditarCliente({ cliente, mostrarPerfilCliente, setMostrarPerfilCliente }) {
 
   const [nomeCliente, setNomeCliente] = useState('');
   const [emailCliente, setEmailCliente] = useState('');
@@ -142,17 +142,17 @@ function EditarCliente({ dadosCliente, mostrarPerfilCliente, setMostrarPerfilCli
   }, [cepCliente]);
 
   useEffect(() => {
-    setNomeCliente(dadosCliente.nome);
-    setEmailCliente(dadosCliente.email);
-    setCpfCliente(dadosCliente.cpf);
-    setTelefoneCliente(dadosCliente.telefone);
-    setCepCliente(dadosCliente.cep || '41830-450');
-    setLogradouroCliente(dadosCliente.logradouro || 'Rua Ceará');
-    setBairroCliente(dadosCliente.bairro || 'Pituba');
-    setCidadeCliente(dadosCliente.cidade || 'Salvador');
-    setComplementoCliente(dadosCliente.complemento || '265, Ap 502');
-    setPtRefCliente(dadosCliente.referencia || 'Hiperideal');
-  }, [dadosCliente])
+    setNomeCliente(cliente.nome);
+    setEmailCliente(cliente.email);
+    setCpfCliente(cliente.cpf);
+    setTelefoneCliente(cliente.telefone);
+    setCepCliente(cliente.cep || '41830-450');
+    setLogradouroCliente(cliente.logradouro);
+    setBairroCliente(cliente.bairro);
+    setCidadeCliente(cliente.cidade);
+    setComplementoCliente(cliente.complemento);
+    setPtRefCliente(cliente.referencia);
+  }, [cliente])
 
   return (
     <form className='form-clientes' onSubmit={(e) => onSubmit(e)}>
@@ -168,7 +168,7 @@ function EditarCliente({ dadosCliente, mostrarPerfilCliente, setMostrarPerfilCli
           <label htmlFor='cpfCliente'>CPF</label>
           <InputMask mask="999.999.999-99" id='cpfCliente' maskPlaceholder='222.222.222-22' /*pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"*/ value={cpfCliente} onChange={(e) => setCpfCliente(e.target.value)} />
           <label htmlFor='cepCliente'>CEP</label>
-          <InputMask mask='99999-999' id='cepCliente' maskPlaceholder='22222-222' /*pattern="\d{5}\d{-}\d{3}"*/ value={cepCliente} onChange={(e) => setCepCliente(e.target.value)} />
+          <InputMask mask='99999-999' id='cepCliente' maskPlaceholder='22222-222' /*pattern="\d{5}\d{-}\d{3}"*/ value={cepCliente} onChange={(e) => setCepCliente(e.target.value || '41830-450')} />
           <label htmlFor='bairroCliente'>Bairro</label>
           <input id='bairroCliente' type='text' value={bairroCliente} onChange={(e) => setBairroCliente(e.target.value)} />
           <label htmlFor='complementoCliente'>Complemento</label>

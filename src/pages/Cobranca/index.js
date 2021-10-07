@@ -1,8 +1,9 @@
-import Cabecalho from '../../components/Cabecalho/Cabecalho';
-import MenuLateral from '../../components/MenuLateral/MenuLateral';
 import './styles.css';
+import MenuLateral from "../../components/MenuLateral/MenuLateral";
+import Cabecalho from '../../components/Cabecalho/Cabecalho';
+import FormularioCobranca from '../../components/FormularioCobranca/FormularioCobranca';
 
-function ListarCobranca() {
+function Cobrancas() {
   return (
     <div className='container'>
       <div className='menu-lateral'>
@@ -12,20 +13,18 @@ function ListarCobranca() {
         <div className='cabecalho'>
           <Cabecalho />
         </div>
-        <div className='container-lista-de-cobrancas'>
-          <div className='cabecalho-lista-cobrancas'>
-            <p className='p1'>Clientes</p>
-            <p className='p2'>Cobranças Feitas</p>
-            <p className='p3'>Cobranças Recebidas</p>
-            <p className='p4'>Status</p>
-          </div>
-          <div className='lista-de-cards'>
-            <h1>Cobranças aqui</h1>
+        <div className='container-titulo-e-form'>
+          <div className='container-form-cliente'>
+            <h4 className='titulo-form'>
+              {'//'} ADICIONAR COBRANCA
+            </h4>
+            <FormularioCobranca />
           </div>
         </div>
       </div>
     </div>
-  );
+
+  )
 }
 
-export default ListarCobranca;
+export default Cobrancas;
