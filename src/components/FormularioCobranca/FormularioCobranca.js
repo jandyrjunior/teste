@@ -18,7 +18,7 @@ function FormularioCobranca() {
 
   useEffect(() => {
     async function obterNomesClientes() {
-      const resposta = await fetch('https://api-cubos-cobranca.herokuapp.com/cliente', {
+      const resposta = await fetch('https://api-cubos-cobranca.herokuapp.com/clientes', {
         method: 'GET',
         headers: {
           'Content-Type': "application/json",
@@ -39,10 +39,10 @@ function FormularioCobranca() {
         <label htmlFor='nome-cliente' onClick={setCarregarDados}>Cliente</label>
         <select id='nome-cliente' className='select-nome-cliente' required>
           <option value="" disabled selected hidden>Selecione um cliente...</option>
-          {listaClientes && listaClientes.map((nome) => <option>{nome.nome}</option>)}
+          {listaClientes && listaClientes.map((cliente) => <option>{cliente.nome_cliente}</option>)}
         </select>
         <label htmlFor='descricao'>Descrição</label>
-        <input type='text' id='descricao' className='descricao-cobranca'></input>
+        <input type='text' id='descricao' className='descricao-cobranca' />
         <p className='aviso'>A descrição informada será impressa no boleto.</p>
         <label htmlFor='status' onClick={setCarregarDados}>Status</label>
         <select id='status' className='status-da-cobranca' required>

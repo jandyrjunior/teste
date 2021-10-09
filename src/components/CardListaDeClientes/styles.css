@@ -13,7 +13,7 @@
     flex-direction: column;
     align-items: flex-start;
     margin-left: 24px;
-    width: 192px;
+    width: 250px;
 }
 
 .card-lista-nome {
@@ -60,23 +60,23 @@
     font-size: 14px;
     font-weight: 400;
     color: #4c4c4c;
-    margin-left: 60px;
+    width: 198px;
 }
 
 .container-cobranca-recebida {
     font-size: 14px;
     font-weight: 400;
     color: #4c4c4c;
-    margin-left: 103px;
+    width: 210px ;
+
 }
 
 .container-status {
     margin: 0;
-    margin-left: 120px;
+    width: 210px;
 }
 
 .container-btn-editar {
-    margin-left: 123px;
     margin-right: 70px;
     cursor: pointer;
 }

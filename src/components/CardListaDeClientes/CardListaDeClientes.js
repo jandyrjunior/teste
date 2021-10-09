@@ -15,16 +15,16 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-function CardListaDeClientes({cliente}) {
+function CardListaDeClientes({ cliente }) {
   const { tokenStorage } = useContext(ContextoDeAutorizacao);
   const [mostrarPerfilCliente, setMostrarPerfilCliente] = useState(false);
   const [mostrarDetalheCliente, setMostrarDetalheCliente] = useState(false);
   const classes = useStyles();
+  console.log('dentro do card lista', cliente)
+  /* async function carregarDadosCobranca() {
+    
 
-  /*async function carregarDadosCliente() {
-    setMostrarPerfilCliente(true);
-
-    const resposta = await fetch('https://api-cubos-cobranca.herokuapp.com/usuario', {
+    const resposta = await fetch('https://api-cubos-cobranca.herokuapp.com/cobrancas', {
       method: 'GET',
       headers: {
         "Authorization": `Bearer ${tokenStorage}`
@@ -33,32 +33,27 @@ function CardListaDeClientes({cliente}) {
 
     const dados = await resposta.json();
 
-    setDadosCliente({
-      nome: dados.nome,
-      email: dados.email,
-      telefone: dados.telefone,
-      cpf: dados.cpf,
-      cep: dados.cep,
-      logradouro: dados.logradouuro,
-    });
-  }*/
+    setDadosCobranca(dados);
+  } */
 
   return (
-    <div className='card-lista'>
+    <div className='card-lista' key='id_cliente'>
+      {
+        console.log('dentro do card lista de clientes: ', cliente)}
       <div className='card-lista-dados'>
-        <p className='card-lista-nome' onClick={setMostrarDetalheCliente}>{cliente.nome}</p>
+        <p className='card-lista-nome' onClick={setMostrarDetalheCliente}>{cliente.nome_cliente}</p>
         <div className='card-lista-email' >
           <img className='card-lista-img' src={iconeEmail} alt='icone-email' />
-          <p>{cliente.email}</p>
+          <p>{cliente.email_cliente}</p>
         </div>
         <div className='card-lista-telefone' >
           <img className='card-lista-img' src={iconeTelefone} alt='icone-telefone' />
-          <p>{cliente.telefone}</p>
+          <p>{cliente.telefone_cliente}</p>
         </div>
       </div>
-      <div className='container-cobranca-feita'>{`R$ ${(cliente/100).toFixed(2)}`}</div>
-      <div className='container-cobranca-recebida'>{'R$ 00.000,00'}</div>
-      <div className='container-status'>{'EM DIA'}</div>
+      <div className='container-cobranca-feita'>{`R$ ${(cliente.cobrancas_feitas / 100).toFixed(2)}`}</div>
+      <div className='container-cobranca-recebida'>{`R$ ${(cliente.cobrancas_recebidas / 100).toFixed(2)}`}</div>
+      <div className='container-status'>{cliente.status}</div>
       <img className='container-btn-editar' src={editar} alt='icone-editar' onClick={setMostrarPerfilCliente} />
       <Backdrop className={classes.backdrop} open={mostrarPerfilCliente} >
         <EditarCliente mostrarPerfilCliente={mostrarPerfilCliente} setMostrarPerfilCliente={setMostrarPerfilCliente} cliente={cliente} tokenStorage={tokenStorage} />
@@ -67,7 +62,7 @@ function CardListaDeClientes({cliente}) {
         <DetalheCliente mostrarDetalheCliente={mostrarDetalheCliente} setMostrarDetalheCliente={setMostrarDetalheCliente} cliente={cliente} />
       </Backdrop>
     </div>
-  );
+  )
 }
 
 export default CardListaDeClientes;

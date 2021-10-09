@@ -1,15 +1,15 @@
 import './styles.css';
 
-function CardListaCobranca() {
-  const cliente = ''
+function CardListaCobranca({cobranca}) { 
+  
   return (
     <div className='card-lista-cobranca'>
-      <p className='p11'>{cliente.id || '#19'}</p>
-      <p className='p12'>{cliente.nome || 'Jandyr Junior'}</p>
-      <p className='p13'>{cliente.descricao || 'Pagamento referente a compras de material escolar para o curso CUbos Academy'}</p>
-      <p className='p14'>{cliente.valor || 'R$ 11.250,53'}</p>
-      <p className='p15'>{cliente.status || 'PAGO'}</p>
-      <p className='p16'>{cliente.vencimento || '12/08/2021'}</p>
+      <p className='p11'>{cobranca.id_cobranca}</p>
+      <p className='p12'>{cobranca.nome_cliente}</p>
+      <p className='p13'>{cobranca.descricao}</p>
+      <p className='p14'>{cobranca.valor}</p>
+      <p className='p15'>{cobranca.status}</p>
+      <p className='p16'>{cobranca.data_vencimento}</p>
     </div>
   );
 }

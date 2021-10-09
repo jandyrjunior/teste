@@ -29,10 +29,10 @@ function FormularioPerfil({ mostrarPerfil, setMostrarPerfil, dadosUsuario }) {
   const { tokenStorage } = useContext(ContextoDeAutorizacao);
 
   useEffect(() => {
-    setNome(dadosUsuario.nome);
-    setEmail(dadosUsuario.email);
-    setCpf(dadosUsuario.cpf);
-    setTelefone(dadosUsuario.telefone);
+    setNome(dadosUsuario.nome_usuario);
+    setEmail(dadosUsuario.email_usuario);
+    setCpf(dadosUsuario.cpf_usuario);
+    setTelefone(dadosUsuario.telefone_usuario);
   }, [dadosUsuario]);
 
   async function onSubmit(e) {
@@ -56,16 +56,16 @@ function FormularioPerfil({ mostrarPerfil, setMostrarPerfil, dadosUsuario }) {
     const dadosForm = {};
 
     if (!senha) {
-      dadosForm.nome = nome
-      dadosForm.email = email
-      dadosForm.telefone = telefone
-      dadosForm.cpf = cpf
+      dadosForm.nome_usuario = nome
+      dadosForm.email_usuario = email
+      dadosForm.telefone_usuario = telefone
+      dadosForm.cpf_usuario = cpf
     } else {
-      dadosForm.nome = nome
-      dadosForm.email = email
+      dadosForm.nome_usuario = nome
+      dadosForm.email_usuario = email
       dadosForm.senha = senha
-      dadosForm.telefone = telefone
-      dadosForm.cpf = cpf
+      dadosForm.telefone_usuario = telefone
+      dadosForm.cpf_usuario = cpf
     }
 
     setErro('');

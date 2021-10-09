@@ -31,13 +31,13 @@ function LogIn() {
 
   async function onSubmit(data) { 
     
-    if (!(data.email || data.senha)) {
+    if (!(data.email_usuario || data.senha)) {
       
       setErro('Favor preencher os campos de e-mail e senha.');
       return;
   
     }
-    if (!data.email) {
+    if (!data.email_usuario) {
       
       setErro('Favor preencher o campo de e-mail.');
       return;
@@ -90,8 +90,8 @@ function LogIn() {
     <div className='container-login'>
       <form className='card-login' onSubmit={handleSubmit(onSubmit)}>
         <img src={logo} alt='logo-cubos' />
-        <label htmlFor='email'>E-mail</label>
-        <input id='email' placeholder='exemplo@email.com' type='email' {...register('email')} />
+        <label htmlFor='email_usuario'>E-mail</label>
+        <input id='email_usuario' placeholder='exemplo@email.com' type='email' {...register('email_usuario')} />
         <div className='container-input-senha'>
           <label htmlFor='senha'>Senha</label>
           <input id='senha' type={verSenha ? 'text' : 'password'} {...register('senha')} />

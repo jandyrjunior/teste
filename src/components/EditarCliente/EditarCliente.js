@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-function EditarCliente({ cliente, mostrarPerfilCliente, setMostrarPerfilCliente }) {
+function EditarCliente({ cliente, setMostrarPerfilCliente }) {
 
   const [nomeCliente, setNomeCliente] = useState('');
   const [emailCliente, setEmailCliente] = useState('');
@@ -59,10 +59,10 @@ function EditarCliente({ cliente, mostrarPerfilCliente, setMostrarPerfilCliente 
     }
 
     const dadosFormCliente = {
-      nome: nomeCliente,
-      email: emailCliente,
-      cpf: cpfCliente,
-      telefone: telefoneCliente,
+      nome_cliente: nomeCliente,
+      email_cliente: emailCliente,
+      cpf_cliente: cpfCliente,
+      telefone_cliente: telefoneCliente,
       cep: cepCliente,
       logradouro: logradouroCliente,
       bairro: bairroCliente,
@@ -100,7 +100,7 @@ function EditarCliente({ cliente, mostrarPerfilCliente, setMostrarPerfilCliente 
         }, 2000);
       }
     } catch (error) {
-      console.log(error.message);
+      setErro(error.message);
     }
 
     e.preventDefault();
@@ -121,32 +121,43 @@ function EditarCliente({ cliente, mostrarPerfilCliente, setMostrarPerfilCliente 
     }
 
     setSucessoCliente(false);
+    setMostrarPerfilCliente(false)
   };
 
   async function carregarDadosPeloCEP(cep) {
 
-    setCidadeCliente('');
-    setBairroCliente('');
-    setLogradouroCliente('');
+    setBairroCliente('')
+    setLogradouroCliente('')
+    setCidadeCliente('')
+    
+    let cepTratado = cep
 
-    if (cep.length === 9) {
-      const dadosCarregados = await obterDadosViaCEP(cep);
-      setCidadeCliente(dadosCarregados.localidade);
-      setBairroCliente(dadosCarregados.bairro);
-      setLogradouroCliente(dadosCarregados.logradouro);
+    if (cepTratado.length === 8 && cepTratado.indexOf('-') === -1) {
+      cepTratado = cep.substr(0, 5) + '-' + cep.substr(5, 7)
+      console.log("teste", cepTratado)
     }
+    setCepCliente(cepTratado)
+    if (cepTratado.length === 9) {
+
+      const dados = await obterDadosViaCEP(cepTratado);
+      setCidadeCliente(dados.localidade)
+      setBairroCliente(dados.bairro)
+      setLogradouroCliente(dados.logradouro)
+      console.log("teste 2", cidadeCliente, bairroCliente, logradouroCliente)
+     /*  rua = dados.logradouro
+      bairro = dados.bairro
+      cidade = dados.localidade
+      console.log(rua, bairro, cidade) */
+    }
+
   }
 
   useEffect(() => {
-    carregarDadosPeloCEP(cepCliente);
-  }, [cepCliente]);
-
-  useEffect(() => {
-    setNomeCliente(cliente.nome);
-    setEmailCliente(cliente.email);
-    setCpfCliente(cliente.cpf);
-    setTelefoneCliente(cliente.telefone);
-    setCepCliente(cliente.cep || '41830-450');
+    setNomeCliente(cliente.nome_cliente);
+    setEmailCliente(cliente.email_cliente);
+    setCpfCliente(cliente.cpf_cliente);
+    setTelefoneCliente(cliente.telefone_cliente);
+    setCepCliente(cliente.cep);
     setLogradouroCliente(cliente.logradouro);
     setBairroCliente(cliente.bairro);
     setCidadeCliente(cliente.cidade);
@@ -166,9 +177,9 @@ function EditarCliente({ cliente, mostrarPerfilCliente, setMostrarPerfilCliente 
       <div className='form-clientes-pt-2'>
         <div className='form-clientes-pt-2-1' >
           <label htmlFor='cpfCliente'>CPF</label>
-          <InputMask mask="999.999.999-99" id='cpfCliente' maskPlaceholder='222.222.222-22' /*pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"*/ value={cpfCliente} onChange={(e) => setCpfCliente(e.target.value)} />
+          <InputMask mask="999.999.999-99" id='cpfCliente' maskplaceholder='222.222.222-22' value={cpfCliente} onChange={(e) => setCpfCliente(e.target.value)} />
           <label htmlFor='cepCliente'>CEP</label>
-          <InputMask mask='99999-999' id='cepCliente' maskPlaceholder='22222-222' /*pattern="\d{5}\d{-}\d{3}"*/ value={cepCliente} onChange={(e) => setCepCliente(e.target.value || '41830-450')} />
+          <InputMask id='cepCliente' maxLength={9} value={cepCliente} onChange={(e) => carregarDadosPeloCEP(e.target.value)} />
           <label htmlFor='bairroCliente'>Bairro</label>
           <input id='bairroCliente' type='text' value={bairroCliente} onChange={(e) => setBairroCliente(e.target.value)} />
           <label htmlFor='complementoCliente'>Complemento</label>
@@ -176,7 +187,7 @@ function EditarCliente({ cliente, mostrarPerfilCliente, setMostrarPerfilCliente 
         </div>
         <div className='form-clientes-pt-2-2' >
           <label htmlFor='telefoneCliente'>Telefone</label>
-          <InputMask mask='(99) 99999 9999' id='telefoneCliente' maskPlaceholder='(99) 98765-4321' /*pattern="\(\d{2}\) \d{5}-\d{4}"*/ value={telefoneCliente} onChange={(e) => setTelefoneCliente(e.target.value)} />
+          <InputMask mask='(99) 99999 9999' id='telefoneCliente' maskplaceholder='(99) 98765-4321' value={telefoneCliente} onChange={(e) => setTelefoneCliente(e.target.value)} />
           <label htmlFor='logradouroCliente'>Logradouro</label>
           <input id='logradouroCliente' type='text' value={logradouroCliente} onChange={(e) => setLogradouroCliente(e.target.value)} />
           <label htmlFor='cidadeCliente'>Cidade</label>
@@ -195,7 +206,7 @@ function EditarCliente({ cliente, mostrarPerfilCliente, setMostrarPerfilCliente 
       <Snackbar open={erro ? true : false} autoHideDuration={5000} onClose={(e) => fecharErro(e)}>
         <Alert variant="filled" severity="error">{erro}</Alert>
       </Snackbar>
-      <Snackbar open={sucessoCliente ? true : false} autoHideDuration={5000} onClose={(e) => fecharSucesso(e)}>
+      <Snackbar open={sucessoCliente ? true : false} autoHideDuration={2000} onClose={(e) => fecharSucesso(e)}>
         <Alert variant="filled" severity="success">{sucessoCliente}</Alert>
       </Snackbar>
     </form>

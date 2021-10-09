@@ -1,5 +1,5 @@
 import './styles.css';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { Backdrop, CircularProgress, Snackbar } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -27,12 +27,15 @@ function FormularioCliente() {
   const [cidadeCliente, setCidadeCliente] = useState('');
   const [complementoCliente, setComplementoCliente] = useState('');
   const [ptRefCliente, setPtRefCliente] = useState('');
-  const history = useHistory();
-  const classes = useStyles();
+  const [sucessoCliente, setSucessoCliente] = useState('');
   const [carregando, setCarregando] = useState(false);
   const [erro, setErro] = useState("");
-  const [sucessoCliente, setSucessoCliente] = useState('');
+  const history = useHistory();
+  const classes = useStyles();
   const { tokenStorage } = useContext(ContextoDeAutorizacao);
+  let rua = ''
+  let bairro = ''
+  let cidade = ''
 
   async function onSubmit(e) {
     e.preventDefault();
@@ -59,17 +62,19 @@ function FormularioCliente() {
     }
 
     const dadosFormCliente = {
-      nome: nomeCliente,
-      email: emailCliente,
-      cpf: cpfCliente,
-      telefone: telefoneCliente,
+      nome_cliente: nomeCliente,
+      email_cliente: emailCliente,
+      cpf_cliente: cpfCliente,
+      telefone_cliente: telefoneCliente,
       cep: cepCliente,
-      logradouro: logradouroCliente,
-      bairro: bairroCliente,
-      cidade: cidadeCliente,
+      logradouro: (logradouroCliente || rua),
+      bairro: (bairroCliente || bairro),
+      cidade: (cidadeCliente || cidade),
       complemento: complementoCliente,
       referencia: ptRefCliente
     };
+
+    console.log('FORMULARIO DE CADASTRO DO CLIENTE', dadosFormCliente)
 
     setErro('');
     setCarregando(true);
@@ -87,7 +92,7 @@ function FormularioCliente() {
 
       setCarregando(false);
       const dados = await resposta.json();
-      
+
       if (!resposta.ok) {
         setErro(dados);
         return;
@@ -100,10 +105,8 @@ function FormularioCliente() {
         }, 2000);
       }
     } catch (error) {
-      console.log(error.message);
+      setErro(error.message);
     }
-
-    e.preventDefault();
 
   }
 
@@ -125,24 +128,45 @@ function FormularioCliente() {
 
   async function carregarDadosPeloCEP(cep) {
 
+    setBairroCliente('')
+    setLogradouroCliente('')
+    setCidadeCliente('')
+
+    let cepTratado = cep
+
+    if (cepTratado.length === 8 && cepTratado.indexOf('-') === -1) {
+      cepTratado = cep.substr(0, 5) + '-' + cep.substr(5, 7)
+      console.log(cepTratado)
+    }
+    setCepCliente(cepTratado)
+    if (cepTratado.length === 9) {
+
+      const dados = await obterDadosViaCEP(cepTratado);
+      setCidadeCliente(dados.localidade)
+      setBairroCliente(dados.bairro)
+      setLogradouroCliente(dados.logradouro)
+     /*  rua = dados.logradouro
+      bairro = dados.bairro
+      cidade = dados.localidade
+      console.log(rua, bairro, cidade) */
+    }
+
+  }
+
+  /* useEffect(() => {
+
     setCidadeCliente('');
     setBairroCliente('');
     setLogradouroCliente('');
-
-    if (cep.length === 9) {
-      const dadosCarregados = await obterDadosViaCEP(cep);
-      setCidadeCliente(dadosCarregados.localidade);
-      setBairroCliente(dadosCarregados.bairro);
-      setLogradouroCliente(dadosCarregados.logradouro);
+      
+    if(cepCliente.length === 9) {      
+     carregarDadosPeloCEP(cepCliente);
     }
-  }
 
-  useEffect(() => {
-    carregarDadosPeloCEP(cepCliente);
-  }, [cepCliente]);
+  }, [cepCliente]); */
 
   return (
-    <form className='form-clientes' onSubmit={(e) => onSubmit(e)}> 
+    <form className='form-clientes' onSubmit={(e) => onSubmit(e)}>
       <div className='form-clientes-pt-1'>
         <label htmlFor='nomeCliente'>Nome</label>
         <input id='nomeCliente' type='text' value={nomeCliente} onChange={(e) => setNomeCliente(e.target.value)} />
@@ -152,9 +176,9 @@ function FormularioCliente() {
       <div className='form-clientes-pt-2'>
         <div className='form-clientes-pt-2-1' >
           <label htmlFor='cpfCliente'>CPF</label>
-          <InputMask mask="999.999.999-99" id='cpfCliente' maskPlaceholder='222.222.222-22' value={cpfCliente} onChange={(e) => setCpfCliente(e.target.value)} />
+          <InputMask mask="999.999.999-99" id='cpfCliente' maskplaceholder='222.222.222-22' value={cpfCliente} onChange={(e) => setCpfCliente(e.target.value)} />
           <label htmlFor='cepCliente'>CEP</label>
-          <InputMask mask='99999-999' id='cepCliente' maskPlaceholder='22222-222' value={cepCliente} onChange={(e) => setCepCliente(e.target.value)} />
+          <InputMask id='cepCliente' maxLength={9} value={cepCliente} onChange={(e) => carregarDadosPeloCEP(e.target.value)} />
           <label htmlFor='bairroCliente'>Bairro</label>
           <input id='bairroCliente' type='text' value={bairroCliente} onChange={(e) => setBairroCliente(e.target.value)} />
           <label htmlFor='complementoCliente'>Complemento</label>
@@ -162,7 +186,7 @@ function FormularioCliente() {
         </div>
         <div className='form-clientes-pt-2-2' >
           <label htmlFor='telefoneCliente'>Telefone</label>
-          <InputMask mask='(99) 99999 9999' id='telefoneCliente' maskPlaceholder='(99) 98765-4321' value={telefoneCliente} onChange={(e) => setTelefoneCliente(e.target.value)} />
+          <InputMask mask='(99) 99999 9999' id='telefoneCliente' maskplaceholder='(99) 98765-4321' value={telefoneCliente} onChange={(e) => setTelefoneCliente(e.target.value)} />
           <label htmlFor='logradouroCliente'>Logradouro</label>
           <input id='logradouroCliente' type='text' value={logradouroCliente} onChange={(e) => setLogradouroCliente(e.target.value)} />
           <label htmlFor='cidadeCliente'>Cidade</label>
@@ -181,7 +205,7 @@ function FormularioCliente() {
       <Snackbar open={erro ? true : false} autoHideDuration={5000} onClose={(e) => fecharErro(e)}>
         <Alert variant="filled" severity="error">{erro}</Alert>
       </Snackbar>
-      <Snackbar open={sucessoCliente ? true : false} autoHideDuration={5000} onClose={(e) => fecharSucesso(e)}>
+      <Snackbar open={sucessoCliente ? true : false} autoHideDuration={2000} onClose={(e) => fecharSucesso(e)}>
         <Alert variant="filled" severity="success">{sucessoCliente}</Alert>
       </Snackbar>
     </form>

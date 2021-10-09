@@ -1,7 +1,7 @@
 import './styles.css';
 import dinheiro from '../../assets/carbon_money.png';
 
-function CardCobranca() {
+function CardStatusCobranca() {
   return (
     <div className='card-cobranca'>
       <div className='topo-card-cobranca'>
@@ -24,4 +24,4 @@ function CardCobranca() {
   );
 }
 
-export default CardCobranca;
+export default CardStatusCobranca;

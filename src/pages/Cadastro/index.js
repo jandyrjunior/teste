@@ -28,19 +28,19 @@ function Cadastro() {
 
   async function onSubmit(data) {
 
-    if (!(data.email || data.senha || data.nome)) {
+    if (!(data.email_usuario || data.senha || data.nome_usuario)) {
 
       setErro('Favor preencher os campos de nome, e-mail e senha.');
       return;
 
     }
-    if (!data.nome) {
+    if (!data.nome_usuario) {
 
       setErro('Favor preencher o campo do nome.');
       return;
 
     }
-    if (!data.email) {
+    if (!data.email_usuario) {
 
       setErro('Favor preencher o campo de e-mail.');
       return;
@@ -72,7 +72,6 @@ function Cadastro() {
     }
 
     const dados = await resposta.json();
-    console.log(dados)
     setErro(dados);
   }
 
@@ -89,10 +88,10 @@ function Cadastro() {
     <div className='container-login'>
       <form className='card-login' onSubmit={handleSubmit(onSubmit)}>
         <img src={logo} alt='logo-cubos' />
-        <label htmlFor='nome'>Nome</label>
-        <input id='nome' placeholder='Digite seu nome' type='text' {...register('nome')} />
-        <label htmlFor='email'>E-mail</label>
-        <input id='email' placeholder='exemplo@email.com' type='email' {...register('email')} />
+        <label htmlFor='nome_usuario'>Nome</label>
+        <input id='nome_usuario' placeholder='Digite seu nome' type='text' {...register('nome_usuario')} />
+        <label htmlFor='email_usuario'>E-mail</label>
+        <input id='email_usuario' placeholder='exemplo@email.com' type='email_usuario' {...register('email_usuario')} />
         <div className='container-input-senha'>
           <label htmlFor='senha'>Senha</label>
           <input id='senha' placeholder='digite sua senha' type={verSenha ? 'text' : 'password'} {...register('senha')} />

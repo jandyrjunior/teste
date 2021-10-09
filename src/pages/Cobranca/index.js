@@ -4,6 +4,7 @@ import Cabecalho from '../../components/Cabecalho/Cabecalho';
 import FormularioCobranca from '../../components/FormularioCobranca/FormularioCobranca';
 
 function Cobrancas() {
+
   return (
     <div className='container'>
       <div className='menu-lateral'>

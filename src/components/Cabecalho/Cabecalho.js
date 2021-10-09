@@ -38,10 +38,10 @@ function Cabecalho() {
     const dados = await resposta.json();
 
     setDadosUsuario({
-      nome: dados.nome,
-      email: dados.email,
-      telefone: dados.telefone,
-      cpf: dados.cpf
+      nome_usuario: dados.nome_usuario,
+      email_usuario: dados.email_usuario,
+      telefone_usuario: dados.telefone_usuario,
+      cpf_usuario: dados.cpf_usuario
     });
   }
 

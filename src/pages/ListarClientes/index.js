@@ -1,19 +1,20 @@
 import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Cabecalho from '../../components/Cabecalho/Cabecalho';
-import CardListaDeClientes from '../../components/ListaDeClientes/ListaDeClientes';
+import CardListaDeClientes from '../../components/CardListaDeClientes/CardListaDeClientes';
 import MenuLateral from '../../components/MenuLateral/MenuLateral';
 import ContextoDeAutorizacao from '../../contextos/ContextoDeAutorizacao';
 import './styles.css'
 
-function ListarClientes() {  
+function ListarClientes() {
   const { tokenStorage } = useContext(ContextoDeAutorizacao);
-  const [dadosCliente, setDadosCliente] = useState([]);
+  const [dadosCliente, setDadosCliente] = useState();
+  const [showCard, setShowCard] = useState(false)
 
   useEffect(() => {
     async function buscarClientes() {
 
-      const resposta = await fetch('https://api-cubos-cobranca.herokuapp.com/cliente', {
+      const resposta = await fetch('https://api-cubos-cobranca.herokuapp.com/clientes', {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -22,9 +23,11 @@ function ListarClientes() {
       });
 
       const dados = await resposta.json();
+      console.log('dados', dados);
       setDadosCliente(dados);
+      setShowCard(true);
     }
-    buscarClientes()
+    buscarClientes();
   }, [tokenStorage]);
 
   return (
@@ -47,9 +50,17 @@ function ListarClientes() {
               <p className='p3'>Cobranças Recebidas</p>
               <p className='p4'>Status</p>
             </div>
+
             <div className='lista-de-cards'>
-              {dadosCliente && dadosCliente.map((cliente) => <CardListaDeClientes cliente={cliente}/>)}
+              {showCard && dadosCliente.map((cliente) => {
+                return (
+                  < CardListaDeClientes cliente={cliente} />
+                )
+              })}
             </div>
+            {/* <div className='lista-de-cards'>
+              {showCard && <CardListaDeClientes dadosCliente={dadosCliente}/>}
+            </div> */}
           </div>
         </div>
       </div>

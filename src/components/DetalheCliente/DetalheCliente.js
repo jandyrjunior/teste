@@ -3,19 +3,21 @@ import iconeEmail from '../../assets/icone-email.png';
 import iconeTelefone from '../../assets/icone-telefone.png';
 import ResumoCobranca from '../ResumoCobranca/ResumoCobranca';
 
-function DetalheCliente({ cliente, mostrarDetalheCliente, setMostrarDetalheCliente }) {
+function DetalheCliente({ cliente, setMostrarDetalheCliente }) {
+  const cobrancas = [...cliente.cobrancas];
+  console.log('dentro de detalhe cliente', cliente)
   return (
     <div className='card-detalhe-cliente'>
       <p className='btn-fechar-2' onClick={() => setMostrarDetalheCliente(false)}>X</p>
-      <h3>{cliente.nome}</h3>
-      <p className='p-cpf'>{cliente.cpf}</p>
+      <h3>{cliente.nome_cliente}</h3>
+      <p className='p-cpf'>{cliente.cpf_cliente}</p>
       <div className='container-detalhes-e-cobrancas'>
         <div className='container-detalhes'>
           <div className='detalhe-email-telefone'>
             <img className='icone-email' src={iconeEmail} alt='icone-email' />
-            <p>{cliente.email}</p>
+            <p>{cliente.email_cliente}</p>
             <img className='icone-telefone' src={iconeTelefone} alt='icone-telefone' />
-            <p>{cliente.telefone}</p>
+            <p>{cliente.telefone_cliente}</p>
           </div>
           <div className='container-endereco'>
             <div className='endereco-1'>
@@ -50,11 +52,11 @@ function DetalheCliente({ cliente, mostrarDetalheCliente, setMostrarDetalheClien
         </div>
         <div className='divisor'></div>
         <div className='container-cobrancas'>
-          <ResumoCobranca />
-          <ResumoCobranca />
-          <ResumoCobranca />
-          <ResumoCobranca />
-          <ResumoCobranca />
+          {cliente && cobrancas.map((cobranca) => {
+            return (
+              <ResumoCobranca cobranca={cobranca}/>
+            )
+          })}
         </div>
       </div>
     </div>

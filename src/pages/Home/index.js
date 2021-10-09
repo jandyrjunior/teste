@@ -1,8 +1,8 @@
 import MenuLateral from "../../components/MenuLateral/MenuLateral";
 import Cabecalho from '../../components/Cabecalho/Cabecalho';
 import './styles.css';
-import CardCliente from "../../components/CardCliente/CardCliente";
-import CardCobranca from "../../components/CardCobranca/CardCobranca";
+import CardStatusCliente from "../../components/CardStatusCliente/CardStatusCliente";
+import CardStatusCobranca from "../../components/CardStatusCobranca/CardStatusCobranca";
 
 function Home() {
 
@@ -16,8 +16,8 @@ function Home() {
           <Cabecalho />
         </div>
         <div className='container-dashboard'>
-          <CardCliente />
-          <CardCobranca />
+          <CardStatusCliente />
+          <CardStatusCobranca />
         </div>
       </div>
     </div>

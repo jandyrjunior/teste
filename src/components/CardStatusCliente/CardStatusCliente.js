@@ -1,7 +1,7 @@
 import './styles.css';
 import cliente from '../../assets/users.png';
 
-function CardCliente() {
+function CardStatusCliente() {
   return (
     <div className='card-cliente'>
       <div className='topo-card-cliente'>
@@ -20,4 +20,4 @@ function CardCliente() {
   );
 }
 
-export default CardCliente;
+export default CardStatusCliente;
