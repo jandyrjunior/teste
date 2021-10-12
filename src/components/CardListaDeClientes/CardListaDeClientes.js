@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-function CardListaDeClientes({ cliente }) {
+function CardListaDeClientes({ cliente, atualizarCards, setAtualizarCards }) {
   const { tokenStorage } = useContext(ContextoDeAutorizacao);
   const [mostrarPerfilCliente, setMostrarPerfilCliente] = useState(false);
   const [mostrarDetalheCliente, setMostrarDetalheCliente] = useState(false);
@@ -51,12 +51,18 @@ function CardListaDeClientes({ cliente }) {
           <p>{cliente.telefone_cliente}</p>
         </div>
       </div>
-      <div className='container-cobranca-feita'>{`R$ ${(cliente.cobrancas_feitas / 100).toFixed(2)}`}</div>
+      <div className='container-cobranca-feita'>{(cliente.cobrancas_feitas / 100).toLocaleString('pt-BR', {style: 'currency', currency:'BRL'})}</div>
       <div className='container-cobranca-recebida'>{`R$ ${(cliente.cobrancas_recebidas / 100).toFixed(2)}`}</div>
-      <div className='container-status'>{cliente.status}</div>
+      <div className={`container-status ${cliente.status_cliente === 'EM DIA' ? 'em-dia' : 'inadimplente'}`}>{cliente.status_cliente}</div>
       <img className='container-btn-editar' src={editar} alt='icone-editar' onClick={setMostrarPerfilCliente} />
       <Backdrop className={classes.backdrop} open={mostrarPerfilCliente} >
-        <EditarCliente mostrarPerfilCliente={mostrarPerfilCliente} setMostrarPerfilCliente={setMostrarPerfilCliente} cliente={cliente} tokenStorage={tokenStorage} />
+        <EditarCliente 
+        mostrarPerfilCliente={mostrarPerfilCliente} 
+        setMostrarPerfilCliente={setMostrarPerfilCliente} 
+        cliente={cliente} 
+        atualizarCards={atualizarCards}
+        setAtualizarCards={setAtualizarCards} 
+        tokenStorage={tokenStorage} />
       </Backdrop>
       <Backdrop className={classes.backdrop} open={mostrarDetalheCliente} >
         <DetalheCliente mostrarDetalheCliente={mostrarDetalheCliente} setMostrarDetalheCliente={setMostrarDetalheCliente} cliente={cliente} />

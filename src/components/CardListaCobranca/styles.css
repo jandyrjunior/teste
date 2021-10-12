@@ -2,7 +2,6 @@
     width: 1020px;
     height: 48px;
     display: flex;
-    justify-content: flex-start;
     align-items: center;
     background-color: white;
     border-radius: 8px;
@@ -10,49 +9,65 @@
 }
 
 .p11 {
-    margin-left: 40px;
+    width: 75px;
+    margin-left: 45px;
     font-size: 14px;
     font-weight: 700;
     color: #4c4c4c;
-    width: 78px;
     text-align: left;
 }
 
 .p12 {
+    width: 195px;
     font-size: 14px;
     font-weight: 400;
     color: #4c4c4c;
-    width: 198px;
     text-align: left;
 }
 
 .p13 {
+    width: 210px;
     font-size: 14px;
     font-weight: 400;
     color: #4c4c4c;
-    width: 192px;
-    margin-right: 20px;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
 }
 
 .p14 {
+    width: 185px;
     font-size: 14px;
     font-weight: 400;
     color: #4c4c4c;
-    width: 182px;
 }
 
 .p15 {
+    width: 200px;
     font-size: 14px;
-    font-weight: 400;
+    font-weight: 600;
     color: #4c4c4c;
-    width: 188px;
 }
 
 .p16 {
     font-size: 14px;
     font-weight: 400;
     color: #4c4c4c;
+    margin-right: auto;
+}
+
+.pago {    
+    color: #4ec06e;
+}
+
+.pendente {
+    color: #5179b5;
+}
+
+.vencida {
+    color: #ff4d4d
+}
+
+abbr {
+    text-decoration: none;
 }

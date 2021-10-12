@@ -7,7 +7,8 @@ import './styles.css';
 
 function ListarCobranca() {
   const {tokenStorage} = useContext(ContextoDeAutorizacao);
-  const [dadosCobranca, setDadosCobranca] = useState([]);
+  const [dadosCobranca, setDadosCobranca] = useState();
+  const [mostrarCards, setMostrarCards] = useState(false);
 
   useEffect(() => {
     async function obterDadosCobranca() {
@@ -20,7 +21,14 @@ function ListarCobranca() {
       });
 
       const dados = await resposta.json();
-      setDadosCobranca([dados]);
+      console.log('dados aqui', dados)
+      if(resposta.ok) {
+        setDadosCobranca(dados);
+        setMostrarCards(true)
+      }
+      if(!resposta.ok) {
+        setMostrarCards(false)
+      }
     }
 
     obterDadosCobranca();
@@ -45,7 +53,7 @@ function ListarCobranca() {
             <p className='p8'>Vencimento</p>
           </div>
           <div className='lista-de-cards-cobranca'>
-            {dadosCobranca && dadosCobranca.map((cobranca) => <CardListaCobranca cobranca={cobranca}/>)}
+            {mostrarCards && dadosCobranca.map((cobranca) => <CardListaCobranca cobranca={cobranca}/>)}
           </div>
         </div>
       </div>

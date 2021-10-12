@@ -74,8 +74,6 @@ function FormularioCliente() {
       referencia: ptRefCliente
     };
 
-    console.log('FORMULARIO DE CADASTRO DO CLIENTE', dadosFormCliente)
-
     setErro('');
     setCarregando(true);
 
@@ -101,7 +99,7 @@ function FormularioCliente() {
       if (resposta.ok) {
         setSucessoCliente('Cliente cadastrado com sucesso.');
         setTimeout(() => {
-          history.push('/home');
+          history.push('/listar-clientes');
         }, 2000);
       }
     } catch (error) {

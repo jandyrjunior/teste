@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-function EditarCliente({ cliente, setMostrarPerfilCliente }) {
+function EditarCliente({ cliente, setMostrarPerfilCliente, atualizarCards, setAtualizarCards }) {
 
   const [nomeCliente, setNomeCliente] = useState('');
   const [emailCliente, setEmailCliente] = useState('');
@@ -27,11 +27,12 @@ function EditarCliente({ cliente, setMostrarPerfilCliente }) {
   const [cidadeCliente, setCidadeCliente] = useState('');
   const [complementoCliente, setComplementoCliente] = useState('');
   const [ptRefCliente, setPtRefCliente] = useState('');
-  const history = useHistory();
-  const classes = useStyles();
+  const [idCliente, setIdCliente] = useState('');
   const [carregando, setCarregando] = useState(false);
   const [erro, setErro] = useState("");
   const [sucessoCliente, setSucessoCliente] = useState('');
+  const history = useHistory();
+  const classes = useStyles();
   const { tokenStorage } = useContext(ContextoDeAutorizacao);
 
   async function onSubmit(e) {
@@ -75,7 +76,8 @@ function EditarCliente({ cliente, setMostrarPerfilCliente }) {
     setCarregando(true);
 
     try {
-      const resposta = await fetch('https://api-cubos-cobranca.herokuapp.com/cliente', {
+      const id = idCliente
+      const resposta = await fetch(`https://api-cubos-cobranca.herokuapp.com/cliente/${id}`, {
         method: "PUT",
         body: JSON.stringify(dadosFormCliente),
         headers: {
@@ -92,7 +94,8 @@ function EditarCliente({ cliente, setMostrarPerfilCliente }) {
         setErro(dados);
         return;
       }
-
+      
+      setAtualizarCards(!atualizarCards)
       if (resposta.ok) {
         setSucessoCliente('Cliente atualizado com sucesso.');
         setTimeout(() => {
@@ -152,6 +155,11 @@ function EditarCliente({ cliente, setMostrarPerfilCliente }) {
 
   }
 
+  function voltarParaLista() {    
+    setAtualizarCards(!atualizarCards)
+    setMostrarPerfilCliente(false)
+  }
+
   useEffect(() => {
     setNomeCliente(cliente.nome_cliente);
     setEmailCliente(cliente.email_cliente);
@@ -163,11 +171,12 @@ function EditarCliente({ cliente, setMostrarPerfilCliente }) {
     setCidadeCliente(cliente.cidade);
     setComplementoCliente(cliente.complemento);
     setPtRefCliente(cliente.referencia);
+    setIdCliente(cliente.id_cliente)
   }, [cliente])
 
   return (
     <form className='form-clientes' onSubmit={(e) => onSubmit(e)}>
-      <p className='btn-fechar-2' onClick={() => setMostrarPerfilCliente(false)}>X</p>
+      <p className='btn-fechar-2' onClick={voltarParaLista}>X</p>
       <div className='form-clientes-pt-1'>
         <label htmlFor='nomeCliente'>Nome</label>
         <input id='nomeCliente' type='text' value={nomeCliente} onChange={(e) => setNomeCliente(e.target.value)} />
@@ -197,7 +206,7 @@ function EditarCliente({ cliente, setMostrarPerfilCliente }) {
         </div>
       </div>
       <div className='form-clientes-pt-3'>
-        <div className='btn-cancelar' onClick={() => setMostrarPerfilCliente(false)}>Cancelar</div>
+        <div className='btn-cancelar' onClick={voltarParaLista}>Cancelar</div>
         <button className='btn-submit' type='submit'>Editar Cliente</button>
       </div>
       <Backdrop className={classes.backdrop} open={carregando} >

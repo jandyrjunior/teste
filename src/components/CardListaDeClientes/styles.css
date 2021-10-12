@@ -36,7 +36,10 @@
 .card-lista-email p {
     margin: 0;
     margin-left: 9px;
-    padding: 0;
+    padding: 0;    
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .card-lista-telefone {
@@ -79,4 +82,16 @@
 .container-btn-editar {
     margin-right: 70px;
     cursor: pointer;
+}
+
+.em-dia {
+    font-size: 16px;
+    font-weight: 600;
+    color: #4ec06e;
+}
+
+.inadimplente {
+    font-size: 16px;
+    font-weight: 600;
+    color: #ff4d4d;
 }

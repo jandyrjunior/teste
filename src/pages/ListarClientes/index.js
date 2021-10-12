@@ -10,6 +10,7 @@ function ListarClientes() {
   const { tokenStorage } = useContext(ContextoDeAutorizacao);
   const [dadosCliente, setDadosCliente] = useState();
   const [showCard, setShowCard] = useState(false)
+  const [atualizarCards, setAtualizarCards] = useState(false);
 
   useEffect(() => {
     async function buscarClientes() {
@@ -24,11 +25,16 @@ function ListarClientes() {
 
       const dados = await resposta.json();
       console.log('dados', dados);
-      setDadosCliente(dados);
-      setShowCard(true);
+      console.log(resposta.ok)
+
+      if (resposta.ok) {
+        setDadosCliente(dados);
+        setShowCard(true);
+      }
+
     }
     buscarClientes();
-  }, [tokenStorage]);
+  }, [tokenStorage, atualizarCards]);
 
   return (
     <div className='container'>
@@ -52,11 +58,12 @@ function ListarClientes() {
             </div>
 
             <div className='lista-de-cards'>
-              {showCard && dadosCliente.map((cliente) => {
+              {(showCard && dadosCliente.map((cliente) => {
                 return (
-                  < CardListaDeClientes cliente={cliente} />
+                  < CardListaDeClientes cliente={cliente} atualizarCards={atualizarCards} setAtualizarCards={setAtualizarCards} />
                 )
-              })}
+              }))}
+
             </div>
             {/* <div className='lista-de-cards'>
               {showCard && <CardListaDeClientes dadosCliente={dadosCliente}/>}

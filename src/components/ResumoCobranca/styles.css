@@ -30,11 +30,12 @@
 .container-dados-cobranca-1 .descricao-da-cobranca {
     font-size: 14px;
     font-weight: 400;    
+    width: 180px;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
     padding: 0;
-    margin-right: 55px;
+    margin-right: auto;
 }
 
 .container-dados-cobranca-1 .valor-da-cobranca {
@@ -62,6 +63,21 @@
 .status-cobranca {
     font-size: 16px;
     font-weight: 600;
-    color: #4ec06e;
     margin: 0;
+}
+
+.pago {    
+    color: #4ec06e;
+}
+
+.pendente {
+    color: #5179b5;
+}
+
+.vencido {
+    color: #ff4d4d
+}
+
+abbr {
+    text-decoration: none;
 }
