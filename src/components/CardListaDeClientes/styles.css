@@ -24,6 +24,7 @@
 }
 
 .card-lista-email {
+    width: 245px;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -94,4 +95,12 @@
     font-size: 16px;
     font-weight: 600;
     color: #ff4d4d;
+}
+
+abbr {
+    text-decoration: none;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    margin: 0;
 }

@@ -44,7 +44,7 @@ function CardListaDeClientes({ cliente, atualizarCards, setAtualizarCards }) {
         <p className='card-lista-nome' onClick={setMostrarDetalheCliente}>{cliente.nome_cliente}</p>
         <div className='card-lista-email' >
           <img className='card-lista-img' src={iconeEmail} alt='icone-email' />
-          <p>{cliente.email_cliente}</p>
+          <abbr title={cliente.email_cliente}>{cliente.email_cliente}</abbr>
         </div>
         <div className='card-lista-telefone' >
           <img className='card-lista-img' src={iconeTelefone} alt='icone-telefone' />
