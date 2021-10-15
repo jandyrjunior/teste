@@ -50,6 +50,12 @@ function ListarClientes() {
           }
         }
       }
+      for (const cliente of listaClientes) {
+        if (cliente.cpf_cliente.includes(dado)) {
+          setDadosCliente([cliente]);
+          return;
+        }
+      }
     }
     if (!Number(dado)) {
       let clientesEncontrados = []
