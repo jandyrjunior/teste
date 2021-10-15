@@ -5,7 +5,7 @@ import ResumoCobranca from '../ResumoCobranca/ResumoCobranca';
 
 function DetalheCliente({ cliente, setMostrarDetalheCliente }) {
   const cobrancas = [...cliente.cobrancas];
-  console.log('dentro de detalhe cliente', cliente)
+  /*console.log('dentro de detalhe cliente', cliente)*/
   return (
     <div className='card-detalhe-cliente'>
       <p className='btn-fechar-2' onClick={() => setMostrarDetalheCliente(false)}>X</p>

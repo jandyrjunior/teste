@@ -20,7 +20,7 @@ function CardListaDeClientes({ cliente, atualizarCards, setAtualizarCards }) {
   const [mostrarPerfilCliente, setMostrarPerfilCliente] = useState(false);
   const [mostrarDetalheCliente, setMostrarDetalheCliente] = useState(false);
   const classes = useStyles();
-  console.log('dentro do card lista', cliente)
+  /*console.log('dentro do card lista', cliente)*/
   /* async function carregarDadosCobranca() {
     
 
@@ -39,7 +39,7 @@ function CardListaDeClientes({ cliente, atualizarCards, setAtualizarCards }) {
   return (
     <div className='card-lista' key='id_cliente'>
       {
-        console.log('dentro do card lista de clientes: ', cliente)}
+        /*console.log('dentro do card lista de clientes: ', cliente)*/}
       <div className='card-lista-dados'>
         <p className='card-lista-nome' onClick={setMostrarDetalheCliente}>{cliente.nome_cliente}</p>
         <div className='card-lista-email' >
@@ -52,7 +52,7 @@ function CardListaDeClientes({ cliente, atualizarCards, setAtualizarCards }) {
         </div>
       </div>
       <div className='container-cobranca-feita'>{(cliente.cobrancas_feitas / 100).toLocaleString('pt-BR', {style: 'currency', currency:'BRL'})}</div>
-      <div className='container-cobranca-recebida'>{`R$ ${(cliente.cobrancas_recebidas / 100).toFixed(2)}`}</div>
+      <div className='container-cobranca-recebida'>{(cliente.cobrancas_recebidas / 100).toLocaleString('pt-BR', {style: 'currency', currency:'BRL'})}</div>
       <div className={`container-status ${cliente.status_cliente === 'EM DIA' ? 'em-dia' : 'inadimplente'}`}>{cliente.status_cliente}</div>
       <img className='container-btn-editar' src={editar} alt='icone-editar' onClick={setMostrarPerfilCliente} />
       <Backdrop className={classes.backdrop} open={mostrarPerfilCliente} >

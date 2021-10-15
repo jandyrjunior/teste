@@ -4,6 +4,7 @@ import Cabecalho from '../../components/Cabecalho/Cabecalho';
 import CardListaDeClientes from '../../components/CardListaDeClientes/CardListaDeClientes';
 import MenuLateral from '../../components/MenuLateral/MenuLateral';
 import ContextoDeAutorizacao from '../../contextos/ContextoDeAutorizacao';
+import iconeFiltro from '../../assets/icone-filtro.png';
 import './styles.css'
 
 function ListarClientes() {
@@ -11,6 +12,7 @@ function ListarClientes() {
   const [dadosCliente, setDadosCliente] = useState();
   const [showCard, setShowCard] = useState(false)
   const [atualizarCards, setAtualizarCards] = useState(false);
+  const [ordenar, setOrdenar] = useState(false);
 
   useEffect(() => {
     async function buscarClientes() {
@@ -23,18 +25,29 @@ function ListarClientes() {
         }
       });
 
-      const dados = await resposta.json();
+      let dados = await resposta.json();
       console.log('dados', dados);
       console.log(resposta.ok)
 
       if (resposta.ok) {
+        if(ordenar){
+          dados = dados.sort((a, b) => {
+            if(a.nome_cliente > b.nome_cliente) {
+              return 1
+            }
+            if(a.nome_cliente < b.nome_cliente) {
+              return -1
+            }
+            return 0
+          })
+        }
         setDadosCliente(dados);
         setShowCard(true);
       }
 
     }
     buscarClientes();
-  }, [tokenStorage, atualizarCards]);
+  }, [tokenStorage, atualizarCards, ordenar]);
 
   return (
     <div className='container'>
@@ -51,7 +64,7 @@ function ListarClientes() {
           </div>
           <div className='container-lista-de-clientes'>
             <div className='cabecalho-lista-clientes'>
-              <p className='p1'>Clientes</p>
+              <p className='p1'>Clientes<img src={iconeFiltro} alt='icone-filtro' onClick={() => setOrdenar(true)}/></p>
               <p className='p2'>Cobranças Feitas</p>
               <p className='p3'>Cobranças Recebidas</p>
               <p className='p4'>Status</p>

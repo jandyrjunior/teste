@@ -134,7 +134,7 @@ function FormularioCliente() {
 
     if (cepTratado.length === 8 && cepTratado.indexOf('-') === -1) {
       cepTratado = cep.substr(0, 5) + '-' + cep.substr(5, 7)
-      console.log(cepTratado)
+      /*console.log(cepTratado)*/
     }
     setCepCliente(cepTratado)
     if (cepTratado.length === 9) {

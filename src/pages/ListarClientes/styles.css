@@ -55,12 +55,17 @@
     width: 100%;
 }
 
+.cabecalho-lista-clientes p img {
+    margin-left: 8px;
+    cursor: pointer;
+}
+
 .p1 {
     margin-left: 24px;
 }
 
 .p2 {
-    margin-left: 192px;
+    margin-left: 170px;
 }
 
 .p3 {

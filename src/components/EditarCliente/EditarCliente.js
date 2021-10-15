@@ -137,7 +137,7 @@ function EditarCliente({ cliente, setMostrarPerfilCliente, atualizarCards, setAt
 
     if (cepTratado.length === 8 && cepTratado.indexOf('-') === -1) {
       cepTratado = cep.substr(0, 5) + '-' + cep.substr(5, 7)
-      console.log("teste", cepTratado)
+      /*console.log("teste", cepTratado)*/
     }
     setCepCliente(cepTratado)
     if (cepTratado.length === 9) {
@@ -146,7 +146,7 @@ function EditarCliente({ cliente, setMostrarPerfilCliente, atualizarCards, setAt
       setCidadeCliente(dados.localidade)
       setBairroCliente(dados.bairro)
       setLogradouroCliente(dados.logradouro)
-      console.log("teste 2", cidadeCliente, bairroCliente, logradouroCliente)
+      /*console.log("teste 2", cidadeCliente, bairroCliente, logradouroCliente)*/
      /*  rua = dados.logradouro
       bairro = dados.bairro
       cidade = dados.localidade

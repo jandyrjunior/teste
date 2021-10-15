@@ -2,11 +2,11 @@ import './styles.css';
 import { useContext, useEffect, useState } from 'react';
 import CurrencyFormat from 'react-currency-format';
 import ContextoDeAutorizacao from '../../contextos/ContextoDeAutorizacao';
-import { Link, useHistory } from 'react-router-dom'
 import { Snackbar } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
+import lixeira from '../../assets/icone-lixeira.png';
 
-function FormularioCobranca() {
+function EditarCobranca({ fecharEdicaoDeCobranca, cobranca, setAtualizarDadosDeCobranca, atualizarDadosDeCobranca }) {
 
   const [listaClientes, setListaClientes] = useState([]);
   const [formNome, setFormNome] = useState('')
@@ -18,11 +18,11 @@ function FormularioCobranca() {
   const [carregarDados, setCarregarDados] = useState(false);
   const [erro, setErro] = useState("");
   const { tokenStorage } = useContext(ContextoDeAutorizacao);
-  const history = useHistory();
+  const [mostrarPopUp, setMostrarPopUp] = useState(false);
 
   async function onSubmitCobranca(e) {
     e.preventDefault();
-    
+
     if (!(formNome || formDescricao || formStatus || formValor || formVencimento)) {
       setErro('Os campos de nome, descricao, status, valor e vencimento são obrigatórios');
       return;
@@ -48,7 +48,7 @@ function FormularioCobranca() {
       return;
     }
 
-    let formValorNumber = formValor;
+    let formValorNumber = formValor.toString();
     formValorNumber = formValorNumber.replace(/[^0-9]/g, '');
 
     const dadosFormCobranca = {
@@ -59,8 +59,10 @@ function FormularioCobranca() {
       status: formStatus.toUpperCase()
     }
 
-    const resposta = await fetch('https://api-cubos-cobranca.herokuapp.com/cobranca', {
-      method: 'POST',
+    /*console.log(dadosFormCobranca)*/
+
+    const resposta = await fetch(`https://api-cubos-cobranca.herokuapp.com/cobranca/${cobranca.id_cobranca}`, {
+      method: 'PUT',
       body: JSON.stringify(dadosFormCobranca),
       headers: {
         "Content-type": "application/json",
@@ -70,15 +72,16 @@ function FormularioCobranca() {
 
     const dados = await resposta.json();
 
-    if(!resposta.ok) {
+    if (!resposta.ok) {
       setErro(dados);
       return;
     }
 
     if (resposta.ok) {
-      setSucessoCliente('Cobrança cadastrada com sucesso.');
+      setSucessoCliente('Cobrança atualizada com sucesso.');
+      setAtualizarDadosDeCobranca(!atualizarDadosDeCobranca)
       setTimeout(() => {
-        history.push('/listar-cobrancas');
+        fecharEdicaoDeCobranca()
       }, 2000);
     }
   }
@@ -95,10 +98,10 @@ function FormularioCobranca() {
 
       const dados = await resposta.json();
       const listaOrdenada = dados.sort((a, b) => {
-        if(a.nome_cliente > b.nome_cliente) {
+        if (a.nome_cliente > b.nome_cliente) {
           return 1
         }
-        if(a.nome_cliente < b.nome_cliente) {
+        if (a.nome_cliente < b.nome_cliente) {
           return -1
         }
         return 0
@@ -109,6 +112,14 @@ function FormularioCobranca() {
 
     obterNomesClientes();
   }, [carregarDados, tokenStorage]);
+
+  useEffect(() => {
+    setFormNome(cobranca.nome_cliente);
+    setFormDescricao(cobranca.descricao);
+    setFormStatus(cobranca.status);
+    setFormValor(cobranca.valor / 100);
+    setFormVencimento(cobranca.data_vencimento.substr(0, 10));
+  }, [cobranca])
 
   const fecharErro = (event, reason) => {
     if (reason === 'clickaway') {
@@ -126,6 +137,32 @@ function FormularioCobranca() {
     setSucessoCliente(false);
   };
 
+  async function excluirCobranca() {
+    const resposta = await fetch(`https://api-cubos-cobranca.herokuapp.com/cobranca/${cobranca.id_cobranca}`, {
+      method: 'DELETE',
+      headers: {
+        "Content-type": "application/json",
+        "Authorization": `Bearer ${tokenStorage}`
+      }
+    });
+
+    const dados = await resposta.json();
+
+    if (!resposta.ok) {
+      setErro(dados);
+      return;
+    }
+
+    if (resposta.ok) {
+      setSucessoCliente('Cobrança excluída com sucesso.');
+      setAtualizarDadosDeCobranca(!atualizarDadosDeCobranca);
+      setTimeout(() => {
+        fecharEdicaoDeCobranca()
+      }, 2000);
+    }   
+
+  }
+
   return (
     <form className='form-cobranca' onSubmit={onSubmitCobranca} >
       <div className='container-form-pt1'>
@@ -135,7 +172,7 @@ function FormularioCobranca() {
           {listaClientes && listaClientes.map((cliente) => <option>{cliente.nome_cliente}</option>)}
         </select>
         <label htmlFor='descricao'>Descrição</label>
-        <input type='text' id='descricao' className='descricao-cobranca' value={formDescricao} onChange={(e) => setFormDescricao(e.target.value)}/>
+        <input type='text' id='descricao' className='descricao-cobranca' value={formDescricao} onChange={(e) => setFormDescricao(e.target.value)} />
         <p className='aviso'>A descrição informada será impressa no boleto.</p>
         <label htmlFor='status'>Status</label>
         <select id='status' className='status-da-cobranca' required value={formStatus} onChange={(e) => setFormStatus(e.target.value)}>
@@ -162,12 +199,23 @@ function FormularioCobranca() {
         </div>
         <div className='form-data'>
           <label htmlFor='vencimento'>Vencimento</label>
-          <input type='date' className='calendario' value={formVencimento} onChange={(e) => setFormVencimento(e.target.value)}/>
+          <input type='date' className='calendario' value={formVencimento} onChange={(e) => setFormVencimento(e.target.value)} />
+        </div>
+      </div>      
+      <div className='container-exclusao'>
+        <img src={lixeira} alt='icone-lixeira' />
+        <p onClick={() => setMostrarPopUp(!mostrarPopUp)}>Excluir cobrança</p>
+        <div className={`${mostrarPopUp ? 'popUp' : 'display-off'}`}>
+          <p>Apagar cobrança?</p>
+          <div className='btn-sim-nao'>
+            <div className='btn-sim' onClick={excluirCobranca}>Sim</div>
+            <div className='btn-nao' onClick={() => setMostrarPopUp(!mostrarPopUp)}>Não</div>
+          </div>
         </div>
       </div>
       <div className='container-form-pt3'>
-        <Link to='listar-cobrancas' className='btn-cancelar-cobranca' >Cancelar</Link>
-        <button className='btn-submit-cobranca' type='submit'>Criar cobrança</button>
+        <p to='listar-cobrancas' className='btn-cancelar-cobranca' onClick={fecharEdicaoDeCobranca}>Cancelar</p>
+        <button className='btn-submit-cobranca' type='submit'>Editar cobrança</button>
       </div>
       <Snackbar open={erro ? true : false} autoHideDuration={5000} onClose={(e) => fecharErro(e)}>
         <Alert variant="filled" severity="error">{erro}</Alert>
@@ -179,4 +227,4 @@ function FormularioCobranca() {
   );
 }
 
-export default FormularioCobranca;
+export default EditarCobranca;

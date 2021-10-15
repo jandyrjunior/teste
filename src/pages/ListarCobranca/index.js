@@ -9,6 +9,7 @@ function ListarCobranca() {
   const {tokenStorage} = useContext(ContextoDeAutorizacao);
   const [dadosCobranca, setDadosCobranca] = useState();
   const [mostrarCards, setMostrarCards] = useState(false);
+  const [atualizarDadosDeCobranca, setAtualizarDadosDeCobranca] = useState(false)
 
   useEffect(() => {
     async function obterDadosCobranca() {
@@ -21,9 +22,18 @@ function ListarCobranca() {
       });
 
       const dados = await resposta.json();
-      console.log('dados aqui', dados)
+      /*console.log('dados aqui', dados)*/
       if(resposta.ok) {
-        setDadosCobranca(dados);
+        const listaOrdenada = dados.sort((a, b) => {
+          if(a.id_cobranca > b.id_cobranca) {
+            return 1
+          }
+          if(a.id_cobranca < b.id_cobranca) {
+            return -1
+          }
+          return 0
+        })
+        setDadosCobranca(listaOrdenada);
         setMostrarCards(true)
       }
       if(!resposta.ok) {
@@ -32,7 +42,7 @@ function ListarCobranca() {
     }
 
     obterDadosCobranca();
-  }, [tokenStorage]);
+  }, [tokenStorage, atualizarDadosDeCobranca]);
 
   return (
     <div className='container'>
@@ -53,7 +63,7 @@ function ListarCobranca() {
             <p className='p8'>Vencimento</p>
           </div>
           <div className='lista-de-cards-cobranca'>
-            {mostrarCards && dadosCobranca.map((cobranca) => <CardListaCobranca cobranca={cobranca}/>)}
+            {mostrarCards && dadosCobranca.map((cobranca) => <CardListaCobranca cobranca={cobranca} setAtualizarDadosDeCobranca={setAtualizarDadosDeCobranca} atualizarDadosDeCobranca={atualizarDadosDeCobranca}/>)}
           </div>
         </div>
       </div>

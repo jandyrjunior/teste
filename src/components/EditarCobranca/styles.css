@@ -1,0 +1,228 @@
+.form-cobranca {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 958px;
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 0px 0px 5px 5px #00000020;
+    margin-left: 72px;
+    margin-right: 72px;
+}
+
+.container-form-pt1 {
+    width: 512px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.form-cobranca label {
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 32px;
+    margin-bottom: 8px;
+    margin-left: 8px;
+}
+
+select {
+    width: 100%;
+    height: 40px;
+    background-color: white;
+    border: 1px solid #374952;
+    border-radius: 8px;
+    padding-left: 8px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+select:invalid { 
+    color: gray; 
+    font-size: 12px;
+    font-weight: 400;
+    padding-left: 8px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+option {
+    font-family: 'Montserrat', sans-serif;
+    padding-top: 10px;
+}
+
+.descricao-cobranca {
+    width: 500px;
+    height: 56px;
+    border-radius: 8px;
+    background-color: white;
+    border: 1px solid #374952;
+    padding-left: 8px;
+    padding-top: 8px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.aviso {
+    font-size: 12px;
+    font-weight: 400;
+    color: #868686;
+    padding-left: 8px;
+    margin: 0;
+    margin-top: 4px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.container-form-pt2 {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.form-valor {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.valor-cobranca {
+    width: 184px;
+    height: 40px;
+    background-color: white;
+    border: 1px solid #374952;
+    border-radius: 8px;
+    padding-left: 8px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.form-data {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin-left: 20px;
+}
+
+.calendario {    
+    width: 285px;
+    height: 40px;
+    background-color: white;
+    border: 1px solid #374952;
+    border-radius: 8px;
+    padding-left: 8px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.container-form-pt3 {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 512px;
+    margin-top: 32px;
+    margin-bottom: 32px;
+}
+
+.btn-cancelar-cobranca {
+    text-decoration: none;
+    padding: 11px 60px;
+    background-color: white;
+    border: 1px solid #da0175;
+    color: #da0175;
+    border-radius: 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.btn-submit-cobranca {
+    text-decoration: none;
+    padding: 11px 60px;
+    background-color: #da0175;
+    border: 1px solid #da0175;
+    color: white;
+    border-radius: 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.sumir {
+    display: none;
+}
+
+.container-exclusao {
+    width: 512px;
+    height: 48px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 50px;
+    color: #868686;
+    cursor: pointer;
+}
+
+.container-exclusao p {    
+    text-decoration: underline;
+}
+
+.popUp {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 119px;
+    height: 46px;
+    background-color: #f8f8f8;
+    box-shadow: #00000020;
+    border-radius: 8px;
+    margin-left: 15px;
+}
+
+.display-off {
+    display: none;
+}
+
+.popUp p {
+    font-size: 10px;
+    font-weight: 300;
+    color: #000000;
+    text-decoration: none;
+}
+
+.btn-sim-nao {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.btn-sim {
+    font-size: 9px;
+    color: white;
+    width: 37px;
+    height: 15px;
+    margin: 2px 10px;
+    background-color: #3a9ff1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-nao {
+    font-size: 9px;
+    color: white;
+    width: 37px;
+    height: 15px;
+    margin: 2px 10px;
+    background-color: #ff576b;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    cursor: pointer;
+}
