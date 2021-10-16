@@ -69,10 +69,12 @@ function ListarClientes() {
       }
       if (clientesEncontrados.length === 0) {
         setErro('Cliente não encontrado.')
+        setDadosCliente([])
       }
       return;
     }
     setErro('Cliente não encontrado.')
+    setDadosCliente([])
   }
 
   useEffect(() => {
@@ -152,7 +154,7 @@ function ListarClientes() {
               <p className='p3'>Cobranças Recebidas</p>
               <p className='p4'>Status</p>
             </div>
-
+ 
             <div className='lista-de-cards'>
               {(showCard && dadosCliente.map((cliente) => {
                 return (

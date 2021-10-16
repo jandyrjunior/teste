@@ -51,6 +51,8 @@ function EditarCobranca({ fecharEdicaoDeCobranca, cobranca, setAtualizarDadosDeC
     let formValorNumber = formValor.toString();
     formValorNumber = formValorNumber.replace(/[^0-9]/g, '');
 
+    console.log('status', formStatus)
+
     const dadosFormCobranca = {
       nome_cliente: formNome,
       descricao: formDescricao,
@@ -59,7 +61,7 @@ function EditarCobranca({ fecharEdicaoDeCobranca, cobranca, setAtualizarDadosDeC
       status: formStatus.toUpperCase()
     }
 
-    /*console.log(dadosFormCobranca)*/
+    console.log('enviado', dadosFormCobranca)
 
     const resposta = await fetch(`https://api-cubos-cobranca.herokuapp.com/cobranca/${cobranca.id_cobranca}`, {
       method: 'PUT',
@@ -119,6 +121,7 @@ function EditarCobranca({ fecharEdicaoDeCobranca, cobranca, setAtualizarDadosDeC
     setFormStatus(cobranca.status);
     setFormValor(cobranca.valor / 100);
     setFormVencimento(cobranca.data_vencimento.substr(0, 10));
+    console.log('recebido', cobranca)
   }, [cobranca])
 
   const fecharErro = (event, reason) => {
@@ -175,10 +178,9 @@ function EditarCobranca({ fecharEdicaoDeCobranca, cobranca, setAtualizarDadosDeC
         <input type='text' id='descricao' className='descricao-cobranca' value={formDescricao} onChange={(e) => setFormDescricao(e.target.value)} />
         <p className='aviso'>A descrição informada será impressa no boleto.</p>
         <label htmlFor='status'>Status</label>
-        <select id='status' className='status-da-cobranca' required value={formStatus} onChange={(e) => setFormStatus(e.target.value)}>
-          <option value="" disabled selected hidden>Selecione um status...</option>
-          <option value='pago'>PAGO</option>
-          <option value='pendente'>PENDENTE</option>
+        <select id='status' className='status-da-cobranca' value={formStatus} onChange={(e) => setFormStatus(e.target.value)} required>
+          <option >{formStatus}</option>
+          <option >{formStatus === 'PENDENTE' ? 'PAGO' : 'PENDENTE'}</option>
         </select>
       </div>
       <div className='container-form-pt2' >
@@ -203,7 +205,7 @@ function EditarCobranca({ fecharEdicaoDeCobranca, cobranca, setAtualizarDadosDeC
         </div>
       </div>      
       <div className='container-exclusao'>
-        <img src={lixeira} alt='icone-lixeira' />
+        <img src={lixeira} alt='icone-lixeira' onClick={() => setMostrarPopUp(!mostrarPopUp)} />
         <p onClick={() => setMostrarPopUp(!mostrarPopUp)}>Excluir cobrança</p>
         <div className={`${mostrarPopUp ? 'popUp' : 'display-off'}`}>
           <p>Apagar cobrança?</p>
@@ -214,7 +216,7 @@ function EditarCobranca({ fecharEdicaoDeCobranca, cobranca, setAtualizarDadosDeC
         </div>
       </div>
       <div className='container-form-pt3'>
-        <p to='listar-cobrancas' className='btn-cancelar-cobranca' onClick={fecharEdicaoDeCobranca}>Cancelar</p>
+        <p to='listar-cobrancas' className='btn-cancelar-cobranca' onClick={fecharEdicaoDeCobranca} >Cancelar</p>
         <button className='btn-submit-cobranca' type='submit'>Editar cobrança</button>
       </div>
       <Snackbar open={erro ? true : false} autoHideDuration={5000} onClose={(e) => fecharErro(e)}>
