@@ -33,6 +33,7 @@ function FormularioPerfil({ mostrarPerfil, setMostrarPerfil, dadosUsuario }) {
     setEmail(dadosUsuario.email_usuario);
     setCpf(dadosUsuario.cpf_usuario);
     setTelefone(dadosUsuario.telefone_usuario);
+    setSenha('')
   }, [dadosUsuario]);
 
   async function onSubmit(e) {
@@ -67,6 +68,8 @@ function FormularioPerfil({ mostrarPerfil, setMostrarPerfil, dadosUsuario }) {
       dadosForm.telefone_usuario = telefone
       dadosForm.cpf_usuario = cpf
     }
+
+    console.log(dadosForm)
 
     setErro('');
     setCarregando(true);
@@ -125,9 +128,9 @@ function FormularioPerfil({ mostrarPerfil, setMostrarPerfil, dadosUsuario }) {
         <img className='icone-vista' src={verSenha ? view : noView} alt='icone-olho' onClick={() => setVerSenha(!verSenha)} />
       </div>
       <label htmlFor='cpf'>CPF</label>
-      <InputMask mask='999.999.999-99' id='cpf' value={cpf} onChange={(e) => setCpf(e.target.value)} />
+      <InputMask mask='999.999.999-99' id='cpf' value={cpf} onChange={(e) => e.target.value ? setCpf(e.target.value) : ''} />
       <label htmlFor='telefone'>Telefone</label>
-      <InputMask mask='(99) 99999-9999' id='telefone' value={telefone} onChange={(e) => setTelefone(e.target.value)} />
+      <InputMask mask='(99) 99999-9999' id='telefone' value={telefone} onChange={(e) => e.target.value ? setTelefone(e.target.value) : ''} />
       <button className='btn-submit' type='submit'>Editar conta</button>
       <Backdrop className={classes.backdrop} open={carregando} >
         <CircularProgress color="inherit" />

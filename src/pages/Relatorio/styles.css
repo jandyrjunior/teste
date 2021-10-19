@@ -1,0 +1,106 @@
+.container-set-filtro {
+    display: flex;
+    align-items: center;
+    margin-right: auto;
+}
+
+.conteudo-filtro {
+    max-height: 100vh;
+}
+
+.container-set-filtro h4 {    
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.filtro-cliente {
+    width: 150px;
+    cursor: pointer;
+}
+
+.filtro-status {
+    width: 190px;
+    cursor: pointer;
+}
+
+.separador {    
+    border-top: 0;
+    border-left: 0;
+    border-right: 2px solid #da0175;
+    border-bottom: 2px solid #da0175;
+    transform: rotate(-45deg);
+    width: 10px;
+    height: 10px;
+    margin-left: 10px;
+    margin-right: 18px;
+}
+
+.pop-C-on {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: #f8f8f8;
+    box-shadow: 0px 0px 3px 3px #00000020;
+    border-radius: 3px;
+    width: 122px;
+    height: 91px;
+    z-index: 1;
+    position: absolute;
+    margin-left: 0px;
+    margin-top: 130px;
+    cursor: pointer;
+}
+
+.pop-C-on p {
+    font-size: 14px;
+    font-weight: 400;
+    color: #000000;
+    margin-left: 19px;
+    cursor: pointer;
+}
+
+.pop-C-on p:hover {
+    color: #da0175;
+}
+
+.pop-C-off {
+    display: none;
+}
+
+.pop-S-on {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: #f8f8f8;
+    box-shadow: 0px 0px 3px 3px #00000020;
+    border-radius: 3px;
+    width: 132px;
+    height: 91px;
+    z-index: 1;
+    position: absolute;
+    margin-left: 193px;
+    margin-top: 130px;
+    cursor: pointer;
+}
+
+.pop-S-on p {
+    font-size: 14px;
+    font-weight: 400;
+    color: #000000;
+    margin-left: 19px;
+    cursor: pointer;
+}
+
+.pop-S-on p:hover {
+    color: #da0175;
+}
+
+.pop-S-off {
+    display: none;
+}
+
+.rel {
+    height: 60vh;
+}

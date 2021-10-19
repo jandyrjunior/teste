@@ -16,6 +16,7 @@ import { useLocalStorage } from 'react-use';
 import ListarClientes from './pages/ListarClientes';
 import ListarCobranca from './pages/ListarCobranca';
 import Cobrancas from './pages/Cobranca';
+import Relatorio from './pages/Relatorio';
 
 function RotasProtegidas(props) {
   return (
@@ -28,9 +29,11 @@ function RotasProtegidas(props) {
 function Routes() {
   const [tokenStorage, setTokenStorage, removeTokenStorage] = useLocalStorage('tokenStorage', '');
   const [token, setToken] = useState();
+  const [filtroC, setFiltroC] = useState('');
+  const [filtroS, setFiltroS] = useState('');
 
   return (
-    <ContextoDeAutorizacao.Provider value={{ token, setToken, tokenStorage, setTokenStorage, removeTokenStorage }}>
+    <ContextoDeAutorizacao.Provider value={{ token, setToken, tokenStorage, setTokenStorage, removeTokenStorage, filtroC, setFiltroC, filtroS, setFiltroS  }}>
       <Router>
         <Switch>
           <Route path='/' exact component={LogIn} />
@@ -42,6 +45,7 @@ function Routes() {
             <Route path='/adicionar-cobrancas' component={Cobrancas} />
             <Route path='/listar-clientes' component={ListarClientes} />
             <Route path='/listar-cobrancas' component={ListarCobranca} />
+            <Route path='/relatorio' component={Relatorio} />
           </RotasProtegidas>
         </Switch>
       </Router>

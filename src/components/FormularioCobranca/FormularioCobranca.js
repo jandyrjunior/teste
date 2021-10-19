@@ -54,10 +54,12 @@ function FormularioCobranca() {
     const dadosFormCobranca = {
       nome_cliente: formNome,
       descricao: formDescricao,
-      valor: Number(formValorNumber),
+      valor: Number(formValorNumber)*100,
       data_vencimento: formVencimento,
       status: formStatus.toUpperCase()
     }
+
+    console.log(dadosFormCobranca)
 
     const resposta = await fetch('https://api-cubos-cobranca.herokuapp.com/cobranca', {
       method: 'POST',

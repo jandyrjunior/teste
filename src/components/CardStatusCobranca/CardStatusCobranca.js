@@ -4,11 +4,25 @@ import { useContext } from 'react';
 import ContextoDeAutorizacao from '../../contextos/ContextoDeAutorizacao';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { useHistory } from 'react-router';
 
 function CardStatusCobranca() {  
 
-  const [statusCobranca, setStatusCobranca] = useState();
-  const {tokenStorage} = useContext(ContextoDeAutorizacao)
+  const [statusCobranca, setStatusCobranca] = useState();  
+  const {tokenStorage, setFiltroC, setFiltroS } = useContext(ContextoDeAutorizacao);
+  const history = useHistory()
+
+  function filtroCobrancaEmDia(){
+    setFiltroC('cobrancas');
+    setFiltroS('em dia');
+    history.push('/relatorio')
+  }
+
+  function filtroCobrancaInadimplente(){
+    setFiltroC('cobrancas');
+    setFiltroS('inadimplente');
+    history.push('/relatorio')
+  }
 
   useEffect(() => {
     async function obterStatusCobranca() {
@@ -33,15 +47,15 @@ function CardStatusCobranca() {
         <img src={dinheiro} alt='icone-dinheiro' />
         Cobrança
       </div>
-      <div className='previstas'>
+      <div className='previstas' onClick={() => filtroCobrancaEmDia()}>
         <p className='txt'>{statusCobranca && statusCobranca[1].status_cobranca}</p>
         <p className='qtd'>{statusCobranca && statusCobranca[1].count}</p>
       </div>
-      <div className='vencidas'>
+      <div className='vencidas' onClick={() => filtroCobrancaInadimplente()}>
         <p className='txt'>{statusCobranca && statusCobranca[2].status_cobranca}</p>
         <p className='qtd'>{statusCobranca && statusCobranca[2].count}</p>
       </div>
-      <div className='pagas'>
+      <div className='pagas' onClick={() => filtroCobrancaEmDia()}>
         <p className='txt'>{statusCobranca && statusCobranca[0].status_cobranca}</p>
         <p className='qtd'>{statusCobranca && statusCobranca[0].count}</p>
       </div>

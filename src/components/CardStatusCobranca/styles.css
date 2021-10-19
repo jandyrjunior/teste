@@ -39,6 +39,7 @@
     width: 266px;
     height: 80px;
     margin-top: 40px;
+    cursor: pointer;
 }
 
 .previstas .txt {
@@ -63,6 +64,7 @@
     width: 266px;
     height: 80px;
     margin-top: 16px;
+    cursor: pointer;
 }
 
 .vencidas .txt {
@@ -88,6 +90,7 @@
     height: 80px;
     margin-top: 16px;
     margin-bottom: 56px;
+    cursor: pointer;
 }
 
 .pagas .txt {

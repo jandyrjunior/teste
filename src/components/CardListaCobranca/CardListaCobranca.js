@@ -33,7 +33,7 @@ function CardListaCobranca({cobranca, setAtualizarDadosDeCobranca, atualizarDado
       <p className='p11' onClick={abrirEdicaoDeCobranca}>#{cobranca.id_cobranca}</p>
       <p className='p12'>{cobranca.nome_cliente}</p>
       <abbr title={cobranca.descricao} className='p13'>{cobranca.descricao}</abbr>
-      <p className='p14'>{(Number(cobranca.valor)/100).toLocaleString('pt-BR', {style: 'currency', currency:'BRL'})}</p>
+      <p className='p14'>{(Number((cobranca.valor >= 100 ? cobranca.valor / 100 : cobranca.valor))).toLocaleString('pt-BR', {style: 'currency', currency:'BRL'})}</p>
       {/*console.log(cobranca.valor)*/}
       <p className={`p15 ${cobranca.status === 'PAGO' ? 'pago' : (cobranca.status_cobranca === 'PENDENTE' ? 'pendente' : 'vencida')}`}>{cobranca.status_cobranca.toUpperCase()}</p>
       <p className='p16'>{dataFormatada}</p>      

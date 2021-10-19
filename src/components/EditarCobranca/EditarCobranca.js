@@ -17,7 +17,7 @@ function EditarCobranca({ fecharEdicaoDeCobranca, cobranca, setAtualizarDadosDeC
   const [sucessoCliente, setSucessoCliente] = useState('');
   const [carregarDados, setCarregarDados] = useState(false);
   const [erro, setErro] = useState("");
-  const { tokenStorage } = useContext(ContextoDeAutorizacao);
+  const {tokenStorage } = useContext(ContextoDeAutorizacao);
   const [mostrarPopUp, setMostrarPopUp] = useState(false);
 
   async function onSubmitCobranca(e) {
@@ -119,7 +119,7 @@ function EditarCobranca({ fecharEdicaoDeCobranca, cobranca, setAtualizarDadosDeC
     setFormNome(cobranca.nome_cliente);
     setFormDescricao(cobranca.descricao);
     setFormStatus(cobranca.status);
-    setFormValor(cobranca.valor / 100);
+    setFormValor((cobranca.valor >= 100 ? cobranca.valor / 100 : cobranca.valor));
     setFormVencimento(cobranca.data_vencimento.substr(0, 10));
     console.log('recebido', cobranca)
   }, [cobranca])
