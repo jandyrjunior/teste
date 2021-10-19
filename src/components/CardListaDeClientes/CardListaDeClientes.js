@@ -33,7 +33,7 @@ function CardListaDeClientes({ cliente, atualizarCards, setAtualizarCards }) {
 
     const dados = await resposta.json();
 
-    setDadosCobranca(dados);
+    setDadosCobranca(dados); 
   } */
 
   return (
