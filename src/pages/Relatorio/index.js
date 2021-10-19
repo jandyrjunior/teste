@@ -80,7 +80,7 @@ function Relatorio() {
   }
 
   useEffect(() => {
-    console.log(filtroC)
+    /*console.log(filtroC)*/
     if (filtroC === 'clientes') {
       async function buscarClientes() {
 
@@ -138,7 +138,7 @@ function Relatorio() {
 
         const dados = await resposta.json();        
         let dadosFiltrados = []
-        console.log(dados)
+        /*console.log(dados)*/
         if (resposta.ok) {
           
           if(filtroS.toUpperCase() === 'EM DIA') {

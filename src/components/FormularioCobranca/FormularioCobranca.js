@@ -59,7 +59,7 @@ function FormularioCobranca() {
       status: formStatus.toUpperCase()
     }
 
-    console.log(dadosFormCobranca)
+    /*console.log(dadosFormCobranca)*/
 
     const resposta = await fetch('https://api-cubos-cobranca.herokuapp.com/cobranca', {
       method: 'POST',

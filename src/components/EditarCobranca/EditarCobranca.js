@@ -51,7 +51,7 @@ function EditarCobranca({ fecharEdicaoDeCobranca, cobranca, setAtualizarDadosDeC
     let formValorNumber = formValor.toString();
     formValorNumber = formValorNumber.replace(/[^0-9]/g, '');
 
-    console.log('status', formStatus)
+    /*console.log('status', formStatus)*/
 
     const dadosFormCobranca = {
       nome_cliente: formNome,
@@ -61,7 +61,7 @@ function EditarCobranca({ fecharEdicaoDeCobranca, cobranca, setAtualizarDadosDeC
       status: formStatus.toUpperCase()
     }
 
-    console.log('enviado', dadosFormCobranca)
+    /*console.log('enviado', dadosFormCobranca)*/
 
     const resposta = await fetch(`https://api-cubos-cobranca.herokuapp.com/cobranca/${cobranca.id_cobranca}`, {
       method: 'PUT',
@@ -121,7 +121,7 @@ function EditarCobranca({ fecharEdicaoDeCobranca, cobranca, setAtualizarDadosDeC
     setFormStatus(cobranca.status);
     setFormValor((cobranca.valor >= 100 ? cobranca.valor / 100 : cobranca.valor));
     setFormVencimento(cobranca.data_vencimento.substr(0, 10));
-    console.log('recebido', cobranca)
+    /*console.log('recebido', cobranca)*/
   }, [cobranca])
 
   const fecharErro = (event, reason) => {

@@ -69,7 +69,7 @@ function FormularioPerfil({ mostrarPerfil, setMostrarPerfil, dadosUsuario }) {
       dadosForm.cpf_usuario = cpf
     }
 
-    console.log(dadosForm)
+    /*console.log(dadosForm)*/
 
     setErro('');
     setCarregando(true);

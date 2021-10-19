@@ -20,7 +20,7 @@ function CardStatusCliente() {
 
   function filtroClienteInadimplente(){
     setFiltroC('clientes');
-    setFiltroS('inadimplentes');
+    setFiltroS('inadimplente');
     history.push('/relatorio')
   }
 
