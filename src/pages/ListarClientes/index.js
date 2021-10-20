@@ -41,21 +41,27 @@ function ListarClientes() {
       }
     }
     if (dado.includes('-') || Number(dado)) {
-      if (!dado.includes('-')) {
-        const cpfTratado = dado.substr(0, 3) + '.' + dado.substr(3, 3) + '.' + dado.substr(6, 3) + '-' + dado.substr(9, 2)
+      let clientesEncontrados = []
+      if (dado.length >= 11) {
+        let cpfTratado = ''
+        if (!dado.includes('-')) {
+          cpfTratado = dado.substr(0, 3) + '.' + dado.substr(3, 3) + '.' + dado.substr(6, 3) + '-' + dado.substr(9, 2)
+        }
         for (const cliente of listaClientes) {
           if (cliente.cpf_cliente.includes(cpfTratado)) {
-            setDadosCliente([cliente]);
-            return;
+            clientesEncontrados.push(cliente)
           }
         }
+        setDadosCliente(clientesEncontrados);
+        return;
       }
       for (const cliente of listaClientes) {
         if (cliente.cpf_cliente.includes(dado)) {
-          setDadosCliente([cliente]);
-          return;
+          clientesEncontrados.push(cliente)
         }
       }
+      setDadosCliente(clientesEncontrados);
+      return;
     }
     if (!Number(dado)) {
       let clientesEncontrados = []
@@ -128,7 +134,7 @@ function ListarClientes() {
           <Cabecalho />
         </div>
         <div className='container-btn-lista'>
-          <div className='container-btn-filtro'>
+          <div className='container-btn-filtro'> 
             <div className='container-btn-add-clientes'>
               <Link to='/adicionar-clientes' className='btn-add-clientes'>Adicionar cliente</Link>
             </div>

@@ -40,16 +40,16 @@
 }
 
 .p9 {
-    margin-left: 126px;
+    margin-left: 143px;
 }
 
 .p10 {
-    margin-left: 89px;
-    margin-right: 37px;
+    margin-left: 83px;
+    margin-right: auto;
 }
 
 .lista-de-cards-cobranca {
-    max-height: 80vh;
+    max-height: 70vh;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -61,4 +61,34 @@
 
 .lista-de-cards-cobranca::-webkit-scrollbar {
     display: none;
-  }
+}
+
+.container-filtro-cobranca {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #374952;
+    width: 432px;
+    height: 40px;
+    border-radius: 8px;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-bottom: 10px;
+}
+
+.container-filtro-cobranca input {
+    border: none;
+    padding-left: 24px;
+    width: 308px;
+    height: 39px;
+    border-radius: 8px 0px 0px 8px;
+    background-color: #f7f7f7;
+    color: #868686;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.container-filtro-cobranca input:focus {
+    outline: none;
+}

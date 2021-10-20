@@ -20,14 +20,17 @@ function Relatorio() {
   const [atualizarDadosDeCobranca, setAtualizarDadosDeCobranca] = useState(false);
   const [popC, setPopC] = useState(false);
   const [popS, setPopS] = useState(false);
+  const [cobrancaPesquisada, setCobrancaPesquisada] = useState('');
 
   function verificaInputPesquisa(conteudo) {
     if (!conteudo) {
       setAtualizarCards(!atualizarCards);
-      setClientePesquisado('')
+      setClientePesquisado('')      
+      setCobrancaPesquisada('')
       return;
     }
     setClientePesquisado(conteudo);
+    setCobrancaPesquisada(conteudo);
   }
 
   function filtrarClientes(dado) {
@@ -43,21 +46,27 @@ function Relatorio() {
       }
     }
     if (dado.includes('-') || Number(dado)) {
-      if (!dado.includes('-')) {
-        const cpfTratado = dado.substr(0, 3) + '.' + dado.substr(3, 3) + '.' + dado.substr(6, 3) + '-' + dado.substr(9, 2)
+      let clientesEncontrados = []
+      if (dado.length >= 11) {
+        let cpfTratado = ''
+        if (!dado.includes('-')) {
+          cpfTratado = dado.substr(0, 3) + '.' + dado.substr(3, 3) + '.' + dado.substr(6, 3) + '-' + dado.substr(9, 2)
+        }
         for (const cliente of listaClientes) {
           if (cliente.cpf_cliente.includes(cpfTratado)) {
-            setDadosCliente([cliente]);
-            return;
+            clientesEncontrados.push(cliente)
           }
         }
+        setDadosCliente(clientesEncontrados);
+        return;
       }
       for (const cliente of listaClientes) {
         if (cliente.cpf_cliente.includes(dado)) {
-          setDadosCliente([cliente]);
-          return;
+          clientesEncontrados.push(cliente)
         }
       }
+      setDadosCliente(clientesEncontrados);
+      return;
     }
     if (!Number(dado)) {
       let clientesEncontrados = []
@@ -79,6 +88,38 @@ function Relatorio() {
     setDadosCliente([])
   }
 
+  function filtrarCobranca(dado) {
+    const listaDeCobranca = dadosCobranca
+
+    if (Number(dado)) {
+      for (const cobranca of listaDeCobranca) {
+        if (cobranca.id_cobranca === Number(dado)) {
+          setDadosCobranca([cobranca]);
+          return;
+        }
+      }
+    }
+    if (!Number(dado)) {
+      let cobrancasEncontrados = []
+      
+      for (const cobranca of listaDeCobranca) {
+        const nomeTratado = cobranca.nome_cliente.toUpperCase();
+        const dadoTratado = dado.toUpperCase();
+        if (nomeTratado.includes(dadoTratado)) {
+          cobrancasEncontrados.push(cobranca)
+          setDadosCobranca(cobrancasEncontrados);
+        }
+      }
+      if (cobrancasEncontrados.length === 0) {
+        setErro('Cobranca não encontrado.')
+        setDadosCobranca([])
+      }
+      return;
+    }
+    setErro('Cobranca não encontrado.')
+    setDadosCobranca([])
+  }
+
   useEffect(() => {
     /*console.log(filtroC)*/
     if (filtroC === 'clientes') {
@@ -93,18 +134,18 @@ function Relatorio() {
         });
         let dados = await resposta.json();
         let dadosFiltrados = []
-        
+
         if (resposta.ok) {
-          if(filtroS.toUpperCase() === 'EM DIA') {
+          if (filtroS.toUpperCase() === 'EM DIA') {
             for (const dado of dados) {
-              if(dado.status_cliente === 'EM DIA') {
+              if (dado.status_cliente === 'EM DIA') {
                 dadosFiltrados.push(dado)
               }
             }
           }
-          if(filtroS.toUpperCase() === 'INADIMPLENTE') {
+          if (filtroS.toUpperCase() === 'INADIMPLENTE') {
             for (const dado of dados) {
-              if(dado.status_cliente === 'INADIMPLENTE') {
+              if (dado.status_cliente === 'INADIMPLENTE') {
                 dadosFiltrados.push(dado)
               }
             }
@@ -119,7 +160,7 @@ function Relatorio() {
             }
             return 0
           })
-          setDadosCliente(dadosFiltrados );
+          setDadosCliente(dadosFiltrados);
         }
 
       }
@@ -136,26 +177,33 @@ function Relatorio() {
           }
         });
 
-        const dados = await resposta.json();        
+        const dados = await resposta.json();
         let dadosFiltrados = []
         /*console.log(dados)*/
         if (resposta.ok) {
-          
-          if(filtroS.toUpperCase() === 'EM DIA') {
+
+          if (filtroS.toUpperCase() === 'EM DIA') {
             for (const dado of dados) {
-              if(dado.status_cobranca === 'PAGO' || dado.status_cobranca === 'PENDENTE') {
+              if (dado.status_cobranca === 'PAGO') {
                 dadosFiltrados.push(dado)
               }
             }
           }
-          if(filtroS.toUpperCase() === 'INADIMPLENTE') {
+          if (filtroS.toUpperCase() === 'PENDENTE') {
             for (const dado of dados) {
-              if(dado.status_cobranca === 'VENCIDO') {
+              if (dado.status_cobranca === 'PENDENTE') {
                 dadosFiltrados.push(dado)
               }
             }
           }
-          
+          if (filtroS.toUpperCase() === 'INADIMPLENTE') {
+            for (const dado of dados) {
+              if (dado.status_cobranca === 'VENCIDO') {
+                dadosFiltrados.push(dado)
+              }
+            }
+          }
+
           const listaOrdenada = dadosFiltrados.sort((a, b) => {
             if (a.id_cobranca > b.id_cobranca) {
               return 1
@@ -171,7 +219,7 @@ function Relatorio() {
 
       obterDadosCobranca();
     }
-  }, [tokenStorage, filtroC, filtroS])
+  }, [tokenStorage, filtroC, filtroS, atualizarCards])
 
   const fecharErro = (event, reason) => {
     if (reason === 'clickaway') {
@@ -200,12 +248,17 @@ function Relatorio() {
               </div>
               <div className='separador'></div>
               <h4 className='filtro-status' onClick={() => setPopS(!popS)}>{filtroS.toUpperCase()}</h4>
-              <div className={popS ? 'pop-S-on' : 'pop-S-off'}>
+              {(filtroC === 'clientes') && <div className={popS ? 'pop-S-on' : 'pop-S-off'}>
                 <p onClick={() => setPopS(false)} onMouseDown={() => setFiltroS('em dia')}>Em Dia</p>
                 <p onClick={() => setPopS(false)} onMouseDown={() => setFiltroS('inadimplente')}>Inadimplente</p>
-              </div>
+              </div>}
+              {(filtroC === 'cobrancas') && <div className={popS ? 'pop-S-on' : 'pop-S-off'}>
+                <p onClick={() => setPopS(false)} onMouseDown={() => setFiltroS('em dia')}>Em Dia</p>
+                <p onClick={() => setPopS(false)} onMouseDown={() => setFiltroS('pendente')}>Pendente</p>
+                <p onClick={() => setPopS(false)} onMouseDown={() => setFiltroS('inadimplente')}>Vencido</p>
+              </div>}
             </div>
-            <div className='container-filtro'>
+            {(filtroC === 'clientes') && <div className='container-filtro'>
               <input
                 type='text'
                 placeholder='Pesquisar por Nome, E-mail ou CPF...'
@@ -218,7 +271,21 @@ function Relatorio() {
                 <img src={iconeLupa} alt='icone-lupa' />
                 <p>BUSCAR</p>
               </div>
-            </div>
+            </div>}
+            {(filtroC === 'cobrancas') && <div className='container-filtro'>
+              <input
+                type='text'
+                placeholder='Pesquisar por Id ou Nome...'
+                value={cobrancaPesquisada}
+                onChange={(e) => verificaInputPesquisa(e.target.value)}
+                onFocus={() => setAtualizarCards(!atualizarCards)}
+                onKeyDown={(e) => e.key === 'Enter' ? filtrarCobranca(cobrancaPesquisada) : ''}
+              />
+              <div className='botao-pesquisar' onClick={() => filtrarCobranca(cobrancaPesquisada)}>
+                <img src={iconeLupa} alt='icone-lupa' />
+                <p>BUSCAR</p>
+              </div>
+            </div>}
           </div>
           <div className='conteudo-filtro'>
             {filtroC === 'clientes' &&

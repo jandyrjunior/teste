@@ -24,6 +24,12 @@ function CardStatusCobranca() {
     history.push('/relatorio')
   }
 
+  function filtroCobrancaPendente(){
+    setFiltroC('cobrancas');
+    setFiltroS('pendente');
+    history.push('/relatorio')
+  }
+
   useEffect(() => {
     async function obterStatusCobranca() {
       const resposta = await fetch('https://api-cubos-cobranca.herokuapp.com/cobrancas/contador', {
@@ -47,7 +53,7 @@ function CardStatusCobranca() {
         <img src={dinheiro} alt='icone-dinheiro' />
         Cobrança
       </div>
-      <div className='previstas' onClick={() => filtroCobrancaEmDia()}>
+      <div className='previstas' onClick={() => filtroCobrancaPendente()}>
         <p className='txt'>{statusCobranca && statusCobranca[1].status_cobranca}</p>
         <p className='qtd'>{statusCobranca && statusCobranca[1].count}</p>
       </div>

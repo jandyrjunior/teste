@@ -33,7 +33,7 @@ function CardListaDeClientes({ cliente, atualizarCards, setAtualizarCards }) {
 
     const dados = await resposta.json();
 
-    setDadosCobranca(dados); 
+    setDadosCobranca(dados);
   } */
 
   return (
@@ -67,7 +67,7 @@ function CardListaDeClientes({ cliente, atualizarCards, setAtualizarCards }) {
       <Backdrop className={classes.backdrop} open={mostrarDetalheCliente} >
         <DetalheCliente mostrarDetalheCliente={mostrarDetalheCliente} setMostrarDetalheCliente={setMostrarDetalheCliente} cliente={cliente} />
       </Backdrop>
-    </div>
+    </div> 
   )
 }
 

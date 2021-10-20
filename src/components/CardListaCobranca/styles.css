@@ -1,6 +1,6 @@
 .card-lista-cobranca {
     width: 1020px;
-    height: 48px;
+    height: auto;
     display: flex;
     align-items: center;
     background-color: white;
@@ -15,7 +15,6 @@
     font-weight: 700;
     color: #4c4c4c;
     text-align: left;
-    cursor: pointer;
 }
 
 .p12 {
@@ -31,9 +30,7 @@
     font-size: 14px;
     font-weight: 400;
     color: #4c4c4c;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
+    white-space: wrap;
 }
 
 .p14 {
@@ -44,7 +41,7 @@
 }
 
 .p15 {
-    width: 200px;
+    width: 130px;
     font-size: 14px;
     font-weight: 600;
     color: #4c4c4c;
@@ -54,7 +51,6 @@
     font-size: 14px;
     font-weight: 400;
     color: #4c4c4c;
-    margin-right: auto;
 }
 
 .pago {    
@@ -70,5 +66,11 @@
 }
 
 abbr {
-    text-decoration: none;
+    text-decoration: none;    
+}
+
+.icone-editar-cobranca {
+    cursor: pointer;
+    margin-right: 45px;
+    margin-left: auto;
 }

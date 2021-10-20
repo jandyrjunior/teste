@@ -13,6 +13,9 @@
 
 .icone-perfil {
     cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%
 }
 
 .opcao-menu img {

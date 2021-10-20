@@ -1,5 +1,5 @@
 import './styles.css';
-import iconePerfil from '../../assets/icone-perfil.png';
+import fotoUsuario from '../../assets/foto-usuario.jpg';
 import editar from '../../assets/icone-editar.png';
 import logout from '../../assets/icone-logout.png';
 import { useState } from 'react';
@@ -52,7 +52,7 @@ function Cabecalho() {
 
   return (
     <div className='container-cabecalho'> 
-      <img className='icone-perfil' src={iconePerfil} alt='icone-perfil' onClick={() => setMostrarPopUp(!mostrarPopUp)} />
+      <img className='icone-perfil' src={fotoUsuario} alt='icone-perfil' onClick={() => setMostrarPopUp(!mostrarPopUp)} />
       <div className={mostrarPopUp ? 'menu-popup-on' : 'menu-popup-off'} >
         <div className='opcao-menu' onClick={carregarDados}> 
           <img src={editar} alt='icone-edicao' />
